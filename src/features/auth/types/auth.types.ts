@@ -1,37 +1,40 @@
-export type UserType = "admin";
-
-export interface Permission {
+export type Permission = {
     name: string;
     label: string;
-}
+};
 
-export interface AuthUser {
+export type Role = {
+    id: number;
+    name: string;
+};
+
+export type AuthUser = {
     id: number;
     name: string;
     email: string;
     phone: string;
-    type: UserType;
+    type: string;
     role_id: number;
-    role: {
-        id: number;
-        name: string;
-    };
+    role: Role;
     is_active: boolean;
     country_code: string;
     currency: string;
-    permissions: Permission[];
-}
+};
 
-export interface LoginPayload {
-    phone: string;
+export type LoginPayload = {
+    email: string;
     password: string;
-}
+};
 
-export interface LoginResponse {
-    user: AuthUser;
-    access_token: string;
-}
-
-export interface MeResponse {
-    user: AuthUser;
-}
+export type LoginResponse = {
+    status: number;
+    message: string;
+    errors: unknown;
+    data: {
+        access_token: string;
+        token_type: string;
+        expires_in: number;
+        user: AuthUser;
+        permissions: Permission[];
+    };
+};
