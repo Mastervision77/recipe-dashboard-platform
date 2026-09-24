@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FFFDF9;
+  --foreground: #171717;
+}
+
+@theme inline {
+  /* Fonts */
+  --font-sans: var(--font-alexandria);
+
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary-500: #f25421;
+  --color-primary-600: #f26f21;
+  --color-primary-700: #f29121;
+
+  --color-secondary-500: #006838;
+  --color-secondary-600: #00ce6f;
+
+  --color-text-primary:#433A3A;
+
+  /* --color-overlay-brown: rgba(109, 51, 15, 0.4);   */
+  --color-overlay-brown: rgba(0, 0, 0, 0.6);
+
+
+--shadow-primary: 2px 3px 8.6px 0px #3A151545;
+
+
+
+  /* Gradients */
+  --background-image-primary-gradient: linear-gradient(
+    269.25deg,
+    #f25421 3.73%,
+    #f26f21 62.47%,
+    #f29121 115.98%
+  );
+
+  --background-image-secondary-gradient: linear-gradient(
+    269.05deg,
+    #006838 0.83%,
+    #00ce6f 165.96%
+  );
+
+}
+
+/* Gradient Border */
+.gradient-border {
+  border: 1px solid transparent;
+  border-image: linear-gradient(
+    90deg,
+    #006f3c 0%,
+    #009f56 100%
+  ) 1;
+}
+
+body {
+  background: var(--background);
+  color: var(--color-text-primary);
+  font-family: var(--font-alexandria);
+}
+
+.container {
+  width: min(100% - 32px, 1280px);
+  margin-inline: auto;
+}
+
+.team-pagination .swiper-pagination-bullet-active {
+  background-color: #0d5c34 !important;
+}
