@@ -1,8 +1,8 @@
 
 import { useState } from "react";
-import { Footer } from "../layout/Footer";
-import { Header } from "../layout/Header";
-import { Sidebar } from "../layout/Sidebar";
+import { Footer } from "../app/layout/Footer";
+import { Header } from "../app/layout/Header";
+import { Sidebar } from "../app/layout/Sidebar";
 import { Outlet } from "react-router-dom";
 
 export default function MainLayout() {

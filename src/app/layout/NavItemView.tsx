@@ -6,7 +6,7 @@ import { useState } from "react";
 import type { NavItem } from "./config/modules";
 import { isPathActive } from "./lib/nav";
 import { LuChevronDown } from "react-icons/lu";
-import { Button } from "../shared/components/Button/Button";
+import { Button } from "../../shared/components/Button/Button";
 
 type Props = {
   item: NavItem;

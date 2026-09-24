@@ -2,7 +2,7 @@ import { MdOutlineMenu } from "react-icons/md";
 import { LuPanelRightClose } from "react-icons/lu";
 import { CiBellOn } from "react-icons/ci";
 import { PageTitle } from "./PageTitle";
-import { Button } from "../shared/components/Button/Button";
+import { Button } from "../../shared/components/Button/Button";
 
 type Props = { onOpenMobile: () => void; onToggleCollapse: () => void };
 
