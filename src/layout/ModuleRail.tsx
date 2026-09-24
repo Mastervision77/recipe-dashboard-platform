@@ -16,7 +16,7 @@ export function ModuleRail({ activeKey, onNavigate }: Props) {
       <Link
         to="/admin"
         onClick={onNavigate}
-        className="mb-6 grid size-11 place-items-center rounded-xl bg-primary-gradient text-lg font-bold text-white"
+        className="mb-6 grid size-11 place-items-center rounded-xl bg-secondary-gradient text-lg font-bold text-white"
       >
         R
       </Link>
@@ -36,7 +36,7 @@ export function ModuleRail({ activeKey, onNavigate }: Props) {
                 className={clsx(
                   "grid size-11 place-items-center rounded-xl transition-colors",
                   active
-                    ? "bg-primary-500/10 text-primary-500"
+                    ? "bg-primary-500/10 text-secondary-500"
                     : "text-text-primary/50 hover:bg-black/5 hover:text-text-primary",
                 )}
               >
