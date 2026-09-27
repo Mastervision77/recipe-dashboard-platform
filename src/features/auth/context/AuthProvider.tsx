@@ -1,59 +1,81 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { AuthContext } from "./AuthContext";
-import { getMe } from "../api/auth.api";
 import { getToken, removeToken, setToken } from "../../../lib/cookies";
 import { UNAUTHORIZED_EVENT } from "../../../lib/axios";
 import type { AuthUser } from "../types/auth.types";
 
+const USER_KEY = "auth_user";
+
+function getStoredUser(): AuthUser | null {
+    try {
+        const user = localStorage.getItem(USER_KEY);
+        return user ? JSON.parse(user) : null;
+    } catch {
+        return null;
+    }
+}
+
+function setStoredUser(user: AuthUser) {
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+}
+
+function removeStoredUser() {
+    localStorage.removeItem(USER_KEY);
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<AuthUser | null>(null);
-    // لو فيه توكن في الكوكي، لازم نستنى نتأكد منه قبل ما نحكم إن اليوزر مش لوجين
-    const [isLoading, setIsLoading] = useState<boolean>(() => !!getToken());
+    const [user, setUser] = useState<AuthUser | null>(() => {
+        if (!getToken()) return null;
 
-    // استعادة الجلسة بعد الريفريش
+        return getStoredUser();
+    });
+
+    const [isLoading] = useState(false);
+
+    // Handle 401 from axios interceptor
     useEffect(() => {
-        if (!getToken()) return;
+        const onUnauthorized = () => {
+            removeToken();
+            removeStoredUser();
+            setUser(null);
+        };
 
-        let cancelled = false;
-
-        getMe()
-            .then(({ user }) => {
-                if (!cancelled) setUser(user);
-            })
-            .catch(() => removeToken())
-            .finally(() => {
-                if (!cancelled) setIsLoading(false);
-            });
+        window.addEventListener(UNAUTHORIZED_EVENT, onUnauthorized);
 
         return () => {
-            cancelled = true;
+            window.removeEventListener(UNAUTHORIZED_EVENT, onUnauthorized);
         };
     }, []);
 
-    // أي 401 من الـ axios interceptor -> اطلع اليوزر
-    useEffect(() => {
-        const onUnauthorized = () => setUser(null);
-        window.addEventListener(UNAUTHORIZED_EVENT, onUnauthorized);
-        return () =>
-            window.removeEventListener(UNAUTHORIZED_EVENT, onUnauthorized);
-    }, []);
-
     const login = useCallback((user: AuthUser, token?: string) => {
-        if (token) setToken(token);
+        if (token) {
+            setToken(token);
+        }
+
+        setStoredUser(user);
         setUser(user);
     }, []);
 
     const logout = useCallback(() => {
         removeToken();
+        removeStoredUser();
         setUser(null);
     }, []);
 
     const value = useMemo(
-        () => ({ user, isAuthenticated: !!user, isLoading, login, logout }),
+        () => ({
+            user,
+            isAuthenticated: !!user,
+            isLoading,
+            login,
+            logout,
+        }),
         [user, isLoading, login, logout],
     );
 
     return (
-        <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={value}>
+            {children}
+        </AuthContext.Provider>
     );
 }
