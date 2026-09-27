@@ -105,6 +105,29 @@ export function AboutStep() {
                 )}
             </div>
 
+              {/* Our Story */}
+            <div className="space-y-4 rounded-2xl border border-neutral-200 bg-white p-5">
+                <h3 className="text-base font-bold text-[#0d5c34]">
+                    قصتنا
+                </h3>
+
+                <BilingualField
+                    name="about.ourstory.title"
+                    label="عنوان قصتنا"
+                    labelName={labelClass}
+                    className={textareaClass}
+                    as="textarea"
+                />
+
+                <BilingualField
+                    name="about.ourstory.subtitle"
+                    label="نص قصتنا"
+                    labelName={labelClass}
+                    className={textareaClass}
+                    as="textarea"
+                />
+            </div>
+
             {/* Mission */}
             <div className="space-y-4 rounded-2xl border border-neutral-200 bg-white p-5">
                 <h3 className="text-base font-bold text-[#0d5c34]">
@@ -151,28 +174,7 @@ export function AboutStep() {
                 />
             </div>
 
-            {/* Our Story */}
-            <div className="space-y-4 rounded-2xl border border-neutral-200 bg-white p-5">
-                <h3 className="text-base font-bold text-[#0d5c34]">
-                    قصتنا
-                </h3>
-
-                <BilingualField
-                    name="about.ourstory.title"
-                    label="عنوان قصتنا"
-                    labelName={labelClass}
-                    className={textareaClass}
-                    as="textarea"
-                />
-
-                <BilingualField
-                    name="about.ourstory.subtitle"
-                    label="نص قصتنا"
-                    labelName={labelClass}
-                    className={textareaClass}
-                    as="textarea"
-                />
-            </div>
+          
         </div>
     );
 }

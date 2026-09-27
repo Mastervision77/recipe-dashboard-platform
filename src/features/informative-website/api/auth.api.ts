@@ -1,7 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "../../../lib/axios";
 import type { LandingData } from "../types/landing.types";
 import { buildLandingFormData } from "../utils/buildLandingFormData";
+import { toast } from "sonner";
+import { queryClient } from "../../../lib/queryClient";
 
 const landingKey = (id: number) => ["landing", id] as const;
 
@@ -17,23 +19,27 @@ export function useLandingQuery(id: number) {
     return useQuery({
         queryKey: landingKey(id),
         queryFn: () => fetchLanding(id),
+         refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+        staleTime: Infinity,
     });
 }
 
 
 // updating landing page api 
 export function useUpdateLanding(id: number) {
-    const queryClient = useQueryClient();
+
     return useMutation({
         mutationFn: async (values: LandingData) => {
             const formData = buildLandingFormData(values);
-            const res = await api.put(`/landings/${id}`, formData, {
+            const res = await api.post(`/landings/${id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
-            return res.data?.data;
+            return res.data;
         },
         onSuccess: (data) => {
             queryClient.setQueryData(landingKey(id), data);
+            toast.success("تم تحديث المحتوي بنجاح")
         },
     });
 }

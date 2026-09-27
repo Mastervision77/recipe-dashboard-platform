@@ -8,12 +8,33 @@ const localizedText = Yup.object({
 
 export const heroSchema = Yup.object({
   header: Yup.object({
-    img: Yup.string().required(),
+    img: Yup.mixed().required(),
     title: localizedText,
     subtitle: localizedText,
   }),
 });
 
+export const aboutSchema = Yup.object({
+  about: Yup.object({
+    img: Yup.mixed().required("About image is required"),
+
+    mission: Yup.object({
+      title: localizedText,
+      subtitle: localizedText,
+    }),
+
+    vision: Yup.object({
+      title: localizedText,
+      subtitle: localizedText,
+    }),
+
+    ourstory: Yup.object({
+      title: localizedText,
+      subtitle: localizedText,
+    }),
+  }),
+});
+
 // Combine into a full schema for final submit, and an array
 // (one entry per step) so "Next" can validate just that slice.
-export const stepSchemas = [heroSchema /*, aboutSchema, servicesSchema */];
+export const stepSchemas = [heroSchema , aboutSchema/*, servicesSchema */];

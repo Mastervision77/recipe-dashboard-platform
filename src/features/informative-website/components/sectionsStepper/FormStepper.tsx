@@ -27,15 +27,15 @@ export function LandingForm() {
     setOpenStep(currentStep);
   }, [currentStep]);
 
-  if (isLoading || !data) return null;
+  if (isLoading || !data?.data) return null;
 
 
-  // console.log(data?.data)
+  console.log(data)
 
   return (
     <Formik<LandingData>
       initialValues={data?.data}
-      enableReinitialize
+      // enableReinitialize
       validationSchema={stepSchemas[currentStep]}
       onSubmit={async (values) => {
         if (!isLast) {
@@ -45,8 +45,11 @@ export function LandingForm() {
         await mutateAsync(values);
       }}
     >
-      {() => (
-        <Form dir="rtl" className="flex-1">
+      {({values}) => {
+console.log("FORMIK VALUES:", values);
+    console.log("ABOUT:", values.about);
+
+return( <Form dir="rtl" className="flex-1">
           <Stepper
             steps={steps}
             currentStep={currentStep}
@@ -79,8 +82,8 @@ export function LandingForm() {
               );
             }}
           </Stepper>
-        </Form>
-      )}
+        </Form>)
+      }}
     </Formik>
   );
 }
