@@ -22,7 +22,8 @@ export type AuthUser = {
 };
 
 export type LoginPayload = {
-    email: string;
+    phone?:string;
+    email?: string;
     password: string;
 };
 

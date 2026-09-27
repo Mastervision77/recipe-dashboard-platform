@@ -14,9 +14,6 @@ export default function LoginPage() {
         <div dir="rtl" className="flex min-h-screen">
             {/* Brand panel - hidden on small screens, orange gradient from the design system */}
             <div className="relative hidden w-[42%] flex-col justify-between overflow-hidden bg-primary-gradient px-12 py-14 text-white lg:flex">
-                {/* Soft decorative glow so the gradient doesn't feel flat */}
-                <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-                <div className="pointer-events-none absolute -bottom-32 -right-16 h-80 w-80 rounded-full bg-black/10 blur-3xl" />
 
                 {/* Logo in a white chip so it stays legible on the gradient */}
                 <div className="relative z-10 inline-flex w-fit items-center rounded-xl bg-white px-4 py-2 shadow-sm">

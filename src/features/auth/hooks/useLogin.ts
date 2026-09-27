@@ -5,6 +5,7 @@ import { login as loginApi } from "../api/auth.api";
 
 import { useAuth } from "./useAuth";
 import { getErrorMessage } from "../../../lib/getErrorMessage";
+import { toast } from "sonner";
 
 export function useLogin() {
     const { login } = useAuth();
@@ -17,12 +18,16 @@ export function useLogin() {
     const { access_token, user, permissions } = response.data;
 
     login(user, access_token);
+     toast.success("تم تسجيل الدخول بنجاح");
 
     // لو عندك PermissionContext
     // setPermissions(permissions);
 
     navigate("/dashboard", { replace: true });
 },
+ onError: (error) => {
+            toast.error(getErrorMessage(error));
+        },
     });
 
     return {
