@@ -32,7 +32,7 @@ export function Sidebar({ open, collapsed, onClose }: Props) {
 
       <aside
         className={clsx(
-          "fixed inset-y-0 start-0 z-50 flex bg-white shadow-primary transition-transform duration-200",
+          "fixed inset-y-0 inset-s-0 z-50 flex bg-white shadow-primary transition-transform duration-200",
           "lg:sticky lg:top-0 lg:h-dvh lg:border-e lg:border-black/5 lg:shadow-none",
           !open &&
             "max-lg:ltr:-translate-x-full max-lg:rtl:translate-x-full",

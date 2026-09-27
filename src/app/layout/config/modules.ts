@@ -29,44 +29,21 @@ export type AdminModule = {
  * Adding a page = adding one line here.
  */
 export const adminModules: AdminModule[] = [
-  {
-    key: "main",
-    title: "الرئيسية",
-    icon: LuLayoutDashboard,
-    basePath: "/admin",
-    sections: [
-      {
-        items: [
-          { title: "لوحة التحكم", href: "/admin", icon: LuLayoutDashboard, exact: true },
-          { title: "المستخدمين", href: "/admin/users", icon: LuUsers },
-          { title: "الإعدادات", href: "/admin/settings", icon: CiSettings },
-        ],
-      },
-    ],
-  },
-  {
-    key: "ecommerce",
-    title: "المتجر",
-    icon: LuShoppingBag,
-    basePath: "/admin/ecommerce",
-    sections: [
-      {
-        items: [
-          { title: "نظرة عامة", href: "/admin/ecommerce", icon: LuLayoutDashboard, exact: true },
-          {
-            title: "الكتالوج",
-            href: "/admin/ecommerce/catalog",
-            icon: LuPackage,
-            children: [
-              { title: "المنتجات", href: "/admin/ecommerce/catalog/products" },
-              { title: "التصنيفات", href: "/admin/ecommerce/catalog/categories" },
-            ],
-          },
-          { title: "الطلبات", href: "/admin/ecommerce/orders", icon: LuClipboardList },
-        ],
-      },
-    ],
-  },
+  // {
+  //   key: "main",
+  //   title: "الرئيسية",
+  //   icon: LuLayoutDashboard,
+  //   basePath: "/admin",
+  //   sections: [
+  //     {
+  //       items: [
+  //         { title: "لوحة التحكم", href: "/admin", icon: LuLayoutDashboard, exact: true },
+  //         { title: "المستخدمين", href: "/admin/users", icon: LuUsers },
+  //         { title: "الإعدادات", href: "/admin/settings", icon: CiSettings },
+  //       ],
+  //     },
+  //   ],
+  // },
   {
     key: "website",
     title: "الموقع التعريفي",
@@ -75,25 +52,48 @@ export const adminModules: AdminModule[] = [
     sections: [
       {
         items: [
-          { title: "الصفحات", href: "/admin/website/pages", icon: LuFileText },
-          { title: "المدونة", href: "/admin/website/blog", icon: LuNewspaper },
-          { title: "رسائل التواصل", href: "/admin/website/messages", icon: LuMessageSquare },
+          { title: "الصفحات", href: "/admin/website", icon: LuFileText },
+          // { title: "المدونة", href: "/admin/website/blog", icon: LuNewspaper },
+          // { title: "رسائل التواصل", href: "/admin/website/messages", icon: LuMessageSquare },
         ],
       },
     ],
   },
-  {
-    key: "recipes",
-    title: "منصة الوصفات",
-    icon: LuChefHat,
-    basePath: "/admin/recipes",
-    sections: [
-      {
-        items: [
-          { title: "الوصفات", href: "/admin/recipes/list", icon: LuUtensils },
-          { title: "التصنيفات", href: "/admin/recipes/categories", icon: LuTags },
-        ],
-      },
-    ],
-  },
+  // {
+  //   key: "ecommerce",
+  //   title: "المتجر",
+  //   icon: LuShoppingBag,
+  //   basePath: "/admin/ecommerce",
+  //   sections: [
+  //     {
+  //       items: [
+  //         { title: "نظرة عامة", href: "/admin/ecommerce", icon: LuLayoutDashboard, exact: true },
+  //         {
+  //           title: "الكتالوج",
+  //           href: "/admin/ecommerce/catalog",
+  //           icon: LuPackage,
+  //           children: [
+  //             { title: "المنتجات", href: "/admin/ecommerce/catalog/products" },
+  //             { title: "التصنيفات", href: "/admin/ecommerce/catalog/categories" },
+  //           ],
+  //         },
+  //         { title: "الطلبات", href: "/admin/ecommerce/orders", icon: LuClipboardList },
+  //       ],
+  //     },
+  //   ],
+  // },
+  // {
+  //   key: "recipes",
+  //   title: "منصة الوصفات",
+  //   icon: LuChefHat,
+  //   basePath: "/admin/recipes",
+  //   sections: [
+  //     {
+  //       items: [
+  //         { title: "الوصفات", href: "/admin/recipes/list", icon: LuUtensils },
+  //         { title: "التصنيفات", href: "/admin/recipes/categories", icon: LuTags },
+  //       ],
+  //     },
+  //   ],
+  // },
 ];

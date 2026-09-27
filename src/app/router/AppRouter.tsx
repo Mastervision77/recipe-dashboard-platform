@@ -7,6 +7,7 @@ import { ProtectedRoute } from "./guards/ProtectedRoute";
 import MainLayout from "../../layouts/MainLayout";
 import { useAuth } from "../../features/auth/hooks/useAuth";
 import NotFoundPage from "../../pages/NotFound";
+import { informativeRoutes } from "../../features/informative-website/routes";
 
 export function AppRouter() {
     const { isAuthenticated } = useAuth();
@@ -47,8 +48,7 @@ export function AppRouter() {
 
                         {ecommerceRoutes}
                         {recipeRoutes}
-
-                        {/* {informativeRoutes} */}
+                        {informativeRoutes}
                     </Route>
                 </Route>
 

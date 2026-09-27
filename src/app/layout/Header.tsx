@@ -13,28 +13,28 @@ export function Header({ onOpenMobile, onToggleCollapse }: Props) {
   return (
     <header className="sticky top-0 z-30 border-b border-black/5 bg-background/80 backdrop-blur">
       <div className="container flex h-16 items-center gap-3">
-       <Button
-  type="button"
-  onClick={onOpenMobile}
-  className={`${iconBtn} lg:hidden`}
->
-  <MdOutlineMenu className="size-5" />
-</Button>
+        <Button
+          type="button"
+          onClick={onOpenMobile}
+          className={`${iconBtn} lg:hidden`}
+        >
+          <MdOutlineMenu className="size-5" />
+        </Button>
 
         <Button
-  type="button"
-  onClick={onToggleCollapse}
-  className={`${iconBtn} hidden lg:grid`}
->
-  <LuPanelRightClose className="size-5 ltr:-scale-x-100" />
-</Button>
+          type="button"
+          onClick={onToggleCollapse}
+          className={`${iconBtn} hidden lg:grid`}
+        >
+          <LuPanelRightClose className="size-5 ltr:-scale-x-100" />
+        </Button>
 
         <PageTitle />
 
         {/* TODO: wire to real notifications + user menu */}
         <div className="ms-auto flex items-center gap-2">
           <button type="button" aria-label="الإشعارات" className={iconBtn}>
-            <CiBellOn  className="size-5" />
+            <CiBellOn className="size-5" />
           </button>
           <div className="grid size-10 place-items-center rounded-full bg-primary-gradient text-sm font-bold text-white">
             A

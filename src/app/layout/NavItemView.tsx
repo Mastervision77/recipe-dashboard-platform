@@ -26,30 +26,30 @@ export function NavItemView({ item, onNavigate }: Props) {
     "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors";
 
   const state = active
-    ? "bg-primary-500/10 font-semibold text-primary-500"
+    ? "bg-primary-500/5 font-semibold text-secondary-500"
     : "text-text-primary hover:bg-black/5";
 
   if (item.children?.length) {
     return (
       <li>
-       <Button
-  type="button"
-  onClick={() => setOpen((o) => !o)}
-  className={clsx(base, state)}
->
-  {Icon && <Icon className="size-5 shrink-0" />}
+        <Button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className={clsx(base, state)}
+        >
+          {Icon && <Icon className="size-5 shrink-0" />}
 
-  <span className="flex-1 text-start">
-    {item.title}
-  </span>
+          <span className="flex-1 text-start">
+            {item.title}
+          </span>
 
-  <LuChevronDown
-    className={clsx(
-      "size-4 transition-transform",
-      open && "rotate-180",
-    )}
-  />
-</Button>
+          <LuChevronDown
+            className={clsx(
+              "size-4 transition-transform",
+              open && "rotate-180",
+            )}
+          />
+        </Button>
 
         {open && (
           <ul className="ms-5 mt-1 space-y-1 border-s border-black/10 ps-3">

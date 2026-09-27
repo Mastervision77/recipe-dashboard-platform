@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { adminModules } from "./config/modules";
 import { getDefaultHref } from "./lib/nav";
 import { Link } from "react-router-dom";
+import logo  from "../../assets/logo.png"
 
 type Props = { activeKey: string; onNavigate?: () => void };
 
@@ -16,9 +17,11 @@ export function ModuleRail({ activeKey, onNavigate }: Props) {
       <Link
         to="/admin"
         onClick={onNavigate}
-        className="mb-6 grid size-11 place-items-center rounded-xl bg-secondary-gradient text-lg font-bold text-white"
+        className="mb-6 grid size-11 place-items-center  "
       >
-        R
+        <img
+        src={logo}
+        />
       </Link>
 
       <ul className="flex flex-col gap-2">
