@@ -1,5 +1,4 @@
 
-import { inputClass } from "@/shared/stylings/ClassesCss";
 import { Field, ErrorMessage } from "formik";
 
 export function BilingualField({

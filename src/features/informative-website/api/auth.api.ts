@@ -8,7 +8,7 @@ const landingKey = (id: number) => ["landing", id] as const;
 // fetching data
 async function fetchLanding(id: number): Promise<LandingData> {
     const { data } = await api.get<LandingData>(
-        `/api/landings/${id}`
+        `/landings/${id}`
     );
 
     return data;
@@ -27,7 +27,7 @@ export function useUpdateLanding(id: number) {
     return useMutation({
         mutationFn: async (values: LandingData) => {
             const formData = buildLandingFormData(values);
-            const res = await api.put(`/api/landings/${id}`, formData, {
+            const res = await api.put(`/landings/${id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             return res.data?.data;
