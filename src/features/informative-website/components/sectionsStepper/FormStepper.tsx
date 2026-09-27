@@ -10,6 +10,8 @@ import { HeroStep } from "../steps/hero";
 import { AboutStep } from "../steps/About";
 import { ValuesStep } from "../steps/Values";
 import Why from "../steps/Why";
+import Services from "../steps/Services";
+import Catalog from "../steps/Catalog";
 
 
 
@@ -17,11 +19,13 @@ import Why from "../steps/Why";
 const steps = [{ id: "hero", label: "قسم الرئيسي" } , 
   {id:"about" , label:"قسم من نحن"} ,
   {id: "values" , label: "قسم القيم"}, 
-  {id: "why_choose_us" , label:"قسم لماذا نحن"}
-  
-
+  {id: "why_choose_us" , label:"قسم لماذا نحن"},
+  {id:"services" , label:"قسم الخدمات"},
+  { id: "catalog", label: "قسم الكتالوج" },
   /*, ...more */];
-const stepComponents = [HeroStep , AboutStep , ValuesStep , Why /*, AboutStep */];
+
+
+const stepComponents = [HeroStep , AboutStep , ValuesStep , Why , Services ,Catalog /*, AboutStep */];
 
 export function LandingForm() {
   const { data, isLoading } = useLandingQuery(1);

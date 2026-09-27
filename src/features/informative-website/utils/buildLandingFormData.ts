@@ -51,13 +51,13 @@ export function buildLandingFormData(values: LandingData): FormData {
   });
 
   // // ===== Services (لاحظي: "service" مفرد) =====
-  // appendBilingual(fd, "servicesectiontitle", values.services?.title);
-  // appendImg(fd, "servicesectionimg", values.services?.img);
-  // values.services?.cards?.forEach((card, i) => {
-  //   appendBilingual(fd, `servicesectioncard[${i}][title]`, card.title);
-  //   appendBilingual(fd, `servicesectioncard[${i}][subtitle]`, card.subtitle);
-  //   if (card.icon) fd.append(`servicesectioncard[${i}][icon]`, card.icon);
-  // });
+  appendBilingual(fd, "servicesectiontitle", values.services?.title);
+  appendImg(fd, "servicesectionimg", values.services?.img);
+  values.services?.cards?.forEach((card, i) => {
+    appendBilingual(fd, `servicesectioncard[${i}][title]`, card.title);
+    appendBilingual(fd, `servicesectioncard[${i}][subtitle]`, card.subtitle);
+    if (card.icon) fd.append(`servicesectioncard[${i}][icon]`, card.icon);
+  });
 
   // // ===== Catalog =====
   // appendBilingual(fd, "catalogsectiontitle", values.catalog?.title);

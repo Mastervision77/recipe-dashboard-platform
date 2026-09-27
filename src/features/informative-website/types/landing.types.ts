@@ -42,12 +42,34 @@ export interface WhyChooseUsSection {
     subtitle: LocalizedText;
     cards: WhyChooseUsCard[];
 }
+
+export interface ServicesCard {
+    itle: LocalizedText;
+    subtitle: LocalizedText;
+    icon: string;
+    img: string | File;
+}
+export interface ServicesSection {
+    title: LocalizedText;
+    img: string | File;
+    cards: ServicesCard[];
+}
+
+export interface CatalogSection { 
+    title: LocalizedText; 
+    subtitle: LocalizedText; 
+    img: string | File; 
+}
+
+
 export interface LandingData {
     id: number;
     header: HeroSection;
     about: AboutSection;
     values: ValuesSection;
     why_choose_us: WhyChooseUsSection;
+    services: ServicesSection;
+    catalog:CatalogSection;
 }
 
 export interface LandingDto {
