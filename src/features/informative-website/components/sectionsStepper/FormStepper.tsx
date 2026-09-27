@@ -6,10 +6,14 @@ import { useLandingQuery, useUpdateLanding } from "../../api/auth.api";
 import { useMultiStepForm } from "../../hooks/useMultiStepForm";
 import type { LandingData } from "../../types/landing.types";
 import { stepSchemas } from "../../schema/landing.schema";
-import { HeroStep } from "../steps/Steps";
+import { HeroStep } from "../steps/hero";
+import { AboutStep } from "../steps/About";
 
-const steps = [{ id: "hero", label: "السكشن الرئيسي" } /*, ...more */];
-const stepComponents = [HeroStep /*, AboutStep */];
+
+
+
+const steps = [{ id: "hero", label: "قسم الرئيسي" } , {id:"about" , label:"قسم من نحن"} /*, ...more */];
+const stepComponents = [HeroStep , AboutStep /*, AboutStep */];
 
 export function LandingForm() {
   const { data, isLoading } = useLandingQuery(1);

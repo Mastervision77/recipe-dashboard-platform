@@ -10,10 +10,18 @@ export interface HeroSection {
   subtitle: LocalizedText;
 }
 
+
+export interface AboutSection {
+    img: string;
+    mission: LocalizedText;
+    vision: LocalizedText;
+    ourstory: LocalizedText;
+}
+
 export interface LandingData {
     id: number;
     header: HeroSection;
-    // about: AboutSection;
+    about: AboutSection;
     // values: ValuesSection;
     // why_choose_us: WhyChooseUsSection;
     // services: ServicesSection;
