@@ -8,12 +8,20 @@ import type { LandingData } from "../../types/landing.types";
 import { stepSchemas } from "../../schema/landing.schema";
 import { HeroStep } from "../steps/hero";
 import { AboutStep } from "../steps/About";
+import { ValuesStep } from "../steps/Values";
+import Why from "../steps/Why";
 
 
 
 
-const steps = [{ id: "hero", label: "قسم الرئيسي" } , {id:"about" , label:"قسم من نحن"} /*, ...more */];
-const stepComponents = [HeroStep , AboutStep /*, AboutStep */];
+const steps = [{ id: "hero", label: "قسم الرئيسي" } , 
+  {id:"about" , label:"قسم من نحن"} ,
+  {id: "values" , label: "قسم القيم"}, 
+  {id: "why_choose_us" , label:"قسم لماذا نحن"}
+  
+
+  /*, ...more */];
+const stepComponents = [HeroStep , AboutStep , ValuesStep , Why /*, AboutStep */];
 
 export function LandingForm() {
   const { data, isLoading } = useLandingQuery(1);
@@ -35,19 +43,18 @@ export function LandingForm() {
   return (
     <Formik<LandingData>
       initialValues={data?.data}
-      // enableReinitialize
+      enableReinitialize
       validationSchema={stepSchemas[currentStep]}
       onSubmit={async (values) => {
         if (!isLast) {
           next();
           return;
         }
+        console.log("values when supmittting",values);
         await mutateAsync(values);
       }}
     >
       {({values}) => {
-console.log("FORMIK VALUES:", values);
-    console.log("ABOUT:", values.about);
 
 return( <Form dir="rtl" className="flex-1">
           <Stepper

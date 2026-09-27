@@ -34,22 +34,21 @@ export function buildLandingFormData(values: LandingData): FormData {
   appendImg(fd, "aboutsectionimg", values.about?.img);
 
   // // ===== Values (لاحظي: "value" مفرد مش "values") =====
-  // appendBilingual(fd, "valuesectiontitle", values.values?.title);
-  // values.values?.cards?.forEach((card, i) => {
-  //   appendBilingual(fd, `valuesectioncard[${i}][title]`, card.title);
-  //   appendBilingual(fd, `valuesectioncard[${i}][subtitle]`, card.subtitle);
-  //   if (card.icon) fd.append(`valuesectioncard[${i}][icon]`, card.icon);
-  //   appendImg(fd, `valuesectioncard[${i}][img]`, card.img);
-  // });
+  appendBilingual(fd, "valuesectiontitle", values.values?.title);
+  values.values?.cards?.forEach((card, i) => {
+    appendBilingual(fd, `valuesectioncard[${i}][title]`, card.title);
+    appendBilingual(fd, `valuesectioncard[${i}][subtitle]`, card.subtitle);
+    if (card.icon) fd.append(`valuesectioncard[${i}][icon]`, card.icon);
+  });
 
   // // ===== Why Choose Us =====
-  // appendBilingual(fd, "whychoosesectiontitle", values.why_choose_us?.title);
-  // appendBilingual(fd, "whychoosesectionsubtitle", values.why_choose_us?.subtitle);
-  // values.why_choose_us?.cards?.forEach((card, i) => {
-  //   appendBilingual(fd, `whychoosesectioncard[${i}][title]`, card.title);
-  //   appendBilingual(fd, `whychoosesectioncard[${i}][subtitle]`, card.subtitle);
-  //   appendImg(fd, `whychoosesectioncard[${i}][img]`, card.img);
-  // });
+  appendBilingual(fd, "whychoosesectiontitle", values.why_choose_us?.title);
+  appendBilingual(fd, "whychoosesectionsubtitle", values.why_choose_us?.subtitle);
+  values.why_choose_us?.cards?.forEach((card, i) => {
+    appendBilingual(fd, `whychoosesectioncard[${i}][title]`, card.title);
+    appendBilingual(fd, `whychoosesectioncard[${i}][subtitle]`, card.subtitle);
+    appendImg(fd, `whychoosesectioncard[${i}][img]`, card.img);
+  });
 
   // // ===== Services (لاحظي: "service" مفرد) =====
   // appendBilingual(fd, "servicesectiontitle", values.services?.title);

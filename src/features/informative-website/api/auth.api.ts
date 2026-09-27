@@ -19,7 +19,7 @@ export function useLandingQuery(id: number) {
     return useQuery({
         queryKey: landingKey(id),
         queryFn: () => fetchLanding(id),
-         refetchOnWindowFocus: false,
+        refetchOnWindowFocus: false,
         refetchOnReconnect: false,
         staleTime: Infinity,
     });
