@@ -6,7 +6,7 @@ export type NavItem = {
   title: string;
   /** For a group with children, this is just the URL prefix used to detect "active". */
   href: string;
-  icon?: LucideIcon;
+  icon?: ReactIcon;
   /** Match the exact path only (use for dashboard / index pages). */
   exact?: boolean;
   children?: NavItem[];
@@ -17,7 +17,7 @@ export type NavSection = { title?: string; items: NavItem[] };
 export type AdminModule = {
   key: "main" | "ecommerce" | "website" | "recipes";
   title: string;
-  icon: LucideIcon;
+  icon: ReactIcon;
   /** URL prefix that owns this module. `main` is the fallback module. */
   basePath: string;
   sections: NavSection[];
