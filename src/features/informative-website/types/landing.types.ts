@@ -62,6 +62,41 @@ export interface CatalogSection {
 }
 
 
+export type SocialPlatform =
+    | "facebook"
+    | "instagram"
+    | "tiktok"
+    | "twitter";
+
+export interface SocialMedia {
+    url: string;
+    platform: SocialPlatform;
+}
+
+export interface TeamCard {
+    title: LocalizedText;
+    subtitle: LocalizedText;
+    socailmedia: SocialMedia;
+    img: File | string;
+}
+
+export interface TeamSection {
+    section: LocalizedText;
+    title: LocalizedText;
+    subtitle: LocalizedText;
+    cards: TeamCard[];
+}
+
+export interface FaqItem {
+    title: LocalizedText;
+    subtitle: LocalizedText;
+}
+
+export interface FaqSection {
+    description: LocalizedText;
+    faq: FaqItem[];
+}
+
 export interface LandingData {
     id: number;
     header: HeroSection;
@@ -70,6 +105,8 @@ export interface LandingData {
     why_choose_us: WhyChooseUsSection;
     services: ServicesSection;
     catalog:CatalogSection;
+    our_team: TeamSection;
+    faq: FaqSection;
 }
 
 export interface LandingDto {

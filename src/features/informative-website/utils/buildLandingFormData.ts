@@ -60,28 +60,28 @@ export function buildLandingFormData(values: LandingData): FormData {
   });
 
   // // ===== Catalog =====
-  // appendBilingual(fd, "catalogsectiontitle", values.catalog?.title);
-  // appendBilingual(fd, "catalogsectionsubtitle", values.catalog?.subtitle);
-  // appendImg(fd, "catalogsectionimg", values.catalog?.img);
+  appendBilingual(fd, "catalogsectiontitle", values.catalog?.title);
+  appendBilingual(fd, "catalogsectionsubtitle", values.catalog?.subtitle);
+  appendImg(fd, "catalogsectionimg", values.catalog?.img);
 
   // // ===== Our Team =====
-  // appendBilingual(fd, "ourteamsection", values.our_team?.section); // حقل السكشن نفسه bilingual
-  // appendBilingual(fd, "ourteamsectiontitle", values.our_team?.title);
-  // appendBilingual(fd, "ourteamsectionsubtitle", values.our_team?.subtitle);
-  // values.our_team?.cards?.forEach((card, i) => {
-  //   appendBilingual(fd, `ourteamsectioncard[${i}][title]`, card.title);
-  //   appendBilingual(fd, `ourteamsectioncard[${i}][subtitle]`, card.subtitle);
-  //   if (card.socailmedia?.url) fd.append(`ourteamsectioncard[${i}][socailmedia][url]`, card.socailmedia.url);
-  //   if (card.socailmedia?.icon) fd.append(`ourteamsectioncard[${i}][socailmedia][icon]`, card.socailmedia.icon);
-  //   appendImg(fd, `ourteamsectioncard[${i}][img]`, card.img);
-  // });
+  appendBilingual(fd, "ourteamsection", values.our_team?.section); // حقل السكشن نفسه bilingual
+  appendBilingual(fd, "ourteamsectiontitle", values.our_team?.title);
+  appendBilingual(fd, "ourteamsectionsubtitle", values.our_team?.subtitle);
+  values.our_team?.cards?.forEach((card, i) => {
+    appendBilingual(fd, `ourteamsectioncard[${i}][title]`, card.title);
+    appendBilingual(fd, `ourteamsectioncard[${i}][subtitle]`, card.subtitle);
+    if (card.socailmedia?.url) fd.append(`ourteamsectioncard[${i}][socailmedia][url]`, card.socailmedia.url);
+    if (card.socailmedia?.icon) fd.append(`ourteamsectioncard[${i}][socailmedia][icon]`, card.socailmedia.icon);
+    appendImg(fd, `ourteamsectioncard[${i}][img]`, card.img);
+  });
 
   // // ===== FAQ =====
-  // appendBilingual(fd, "faqsectiondescription", values.faq?.description);
-  // values.faq?.faq?.forEach((item, i) => {
-  //   appendBilingual(fd, `faqsectionfaq[${i}][title]`, item.title);
-  //   appendBilingual(fd, `faqsectionfaq[${i}][subtitle]`, item.subtitle);
-  // });
+  appendBilingual(fd, "faqsectiondescription", values.faq?.description);
+  values.faq?.faq?.forEach((item, i) => {
+    appendBilingual(fd, `faqsectionfaq[${i}][title]`, item.title);
+    appendBilingual(fd, `faqsectionfaq[${i}][subtitle]`, item.subtitle);
+  });
 
   // // ===== Contact =====
   // appendBilingual(fd, "contactsectiontitle", values.contact?.title);

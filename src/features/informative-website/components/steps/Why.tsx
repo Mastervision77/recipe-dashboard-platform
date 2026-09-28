@@ -51,7 +51,7 @@ export default function Why() {
 
             {/* Cards */}
             <FieldArray name="why_choose_us.cards">
-                {({ push }) => (
+                {({ push , remove }) => (
                     <div className="space-y-5">
                         {/* Header */}
                         <div className="flex items-center justify-between">
@@ -74,9 +74,20 @@ export default function Why() {
                                 key={index}
                                 className="space-y-5 rounded-2xl border border-neutral-200 bg-white p-5"
                             >
-                                <h4 className="text-sm font-bold text-neutral-800">
-                                    السبب {index + 1}
-                                </h4>
+                                {/* Card Header */}
+                    <div className="flex items-center justify-between">
+                        <h4 className="text-sm font-bold text-neutral-800">
+                            السبب {index + 1}
+                        </h4>
+
+                        <button
+                            type="button"
+                            onClick={() => remove(index)}
+                            className="rounded-full border border-red-200 px-4 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-50"
+                        >
+                            حذف
+                        </button>
+                    </div>
 
                                 <ImageUploadField
                                     name={`why_choose_us.cards[${index}].img`}
