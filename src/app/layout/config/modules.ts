@@ -29,21 +29,21 @@ export type AdminModule = {
  * Adding a page = adding one line here.
  */
 export const adminModules: AdminModule[] = [
-  // {
-  //   key: "main",
-  //   title: "الرئيسية",
-  //   icon: LuLayoutDashboard,
-  //   basePath: "/admin",
-  //   sections: [
-  //     {
-  //       items: [
-  //         { title: "لوحة التحكم", href: "/admin", icon: LuLayoutDashboard, exact: true },
-  //         { title: "المستخدمين", href: "/admin/users", icon: LuUsers },
-  //         { title: "الإعدادات", href: "/admin/settings", icon: CiSettings },
-  //       ],
-  //     },
-  //   ],
-  // },
+  {
+    key: "main",
+    title: "الرئيسية",
+    icon: LuLayoutDashboard,
+    basePath: "/admin/dashboard",
+    sections: [
+      {
+        items: [
+          { title: "لوحة التحكم", href: "/admin/dashboard", icon: LuLayoutDashboard, exact: true },
+          { title: "المستخدمين", href: "/admin/users", icon: LuUsers },
+          { title: "الإعدادات", href: "/admin/settings", icon: CiSettings },
+        ],
+      },
+    ],
+  },
   {
     key: "website",
     title: "الموقع التعريفي",
