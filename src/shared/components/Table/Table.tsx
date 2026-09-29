@@ -20,7 +20,8 @@ export function Table<T extends object>({
     });
 
     return (
-        <div className="w-full overflow-x-auto rounded-xl border border-gray-100 bg-white shadow-sm">
+        <div className="w-full rounded-xl border border-gray-100 bg-white shadow-sm">
+        <div className="overflow-visible">
             <table className="w-full border-collapse text-right text-xs md:text-sm">
                 <thead>
                     {table.getHeaderGroups().map((headerGroup) => (
@@ -60,6 +61,8 @@ export function Table<T extends object>({
                     ))}
                 </tbody>
             </table>
+        </div>
+
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import type { ContactForm } from "../../types/contact.types";
 import ViewButtons from "../../../../shared/components/view/ViewButtons";
+import { ActionDropdown } from "../../../../shared/components/ActionDropdown/ActionDropdown";
 
 const columnHelper = createColumnHelper<ContactForm>();
 
@@ -17,7 +18,23 @@ export const generateColumns = ({
 
         columnHelper.accessor("email", {
             header: "البريد الالكتروني",
-            cell: (info) => info.getValue() || "—",
+            cell: (info) => {
+                const email = info.getValue();
+
+                if (!email) return "—";
+
+                const subject = "بخصوص طلب التواصل";
+
+                return (
+                    <a
+                        target="_blank"
+                        href={`mailto:${email}?subject=${encodeURIComponent(subject)}`}
+                        className="text-brand-primary underline"
+                    >
+                        {email}
+                    </a>
+                );
+            },
         }),
 
         columnHelper.accessor("phone_number", {
