@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "../../../lib/axios";
-import type { LandingDto } from "../types/landing.types";
+import type { LandingData, LandingDto } from "../types/landing.types";
 import { buildLandingFormData } from "../utils/buildLandingFormData";
 import { toast } from "sonner";
 import { queryClient } from "../../../lib/queryClient";
@@ -30,7 +30,7 @@ export function useLandingQuery(id: number) {
 export function useUpdateLanding(id: number) {
 
     return useMutation({
-        mutationFn: async (values: LandingDto) => {
+        mutationFn: async (values: LandingData) => {
             const formData = buildLandingFormData(values);
             const res = await api.post(`/landings/${id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
