@@ -16,22 +16,22 @@ import {
 
 const socialMediaOptions = [
     {
-        value: "facebook",
+        value: "e-font-icon-svg e-fab-facebook-f",
         label: "Facebook",
         icon: FaFacebookF,
     },
     {
-        value: "instagram",
+        value: "e-font-icon-svg e-fab-instagram",
         label: "Instagram",
         icon: FaInstagram,
     },
     {
-        value: "tiktok",
+        value: "e-font-icon-svg e-fab-tiktok",
         label: "TikTok",
         icon: FaTiktok,
     },
     {
-        value: "twitter",
+        value: "e-font-icon-svg e-fab-twitter",
         label: "Twitter",
         icon: FaTwitter,
     },
@@ -48,7 +48,7 @@ const emptyTeamMember = {
     },
     socailmedia: {
         url: "",
-        platform: "facebook",
+        icon: "facebook",
     },
     img: "",
 };
@@ -125,67 +125,51 @@ export default function Team() {
                                         as="textarea"
                                     />
 
+
                                     {/* Social Media */}
                                     <div className="space-y-3">
                                         <label className={labelClass}>
                                             وسائل التواصل الاجتماعي
                                         </label>
 
-                                        <div className="flex items-center gap-3">
-                                            {socialMediaOptions.map(
-                                                (social) => {
-                                                    const Icon = social.icon;
+                                        <div className="space-y-3">
+                                            {socialMediaOptions.map((social, socialIndex) => {
+                                                const Icon = social.icon;
 
-                                                    const isSelected =
-                                                        card.socailmedia
-                                                            ?.platform ===
-                                                        social.value;
-
-                                                    return (
-                                                        <button
-                                                            key={social.value}
-                                                            type="button"
-                                                            onClick={() =>
-                                                                form.setFieldValue(
-                                                                    `our_team.cards.${index}.socailmedia.platform`,
-                                                                    social.value
-                                                                )
-                                                            }
-                                                            className={`
-                                                                flex h-11 w-11
-                                                                items-center
-                                                                justify-center
-                                                                rounded-full
-                                                                border
-                                                                transition
-                                                                ${
-                                                                    isSelected
-                                                                        ? "border-[#0d5c34] bg-[#0d5c34] text-white"
-                                                                        : "border-neutral-300 bg-white text-neutral-500 hover:border-[#0d5c34]"
-                                                                }
-                                                            `}
-                                                            title={social.label}
-                                                        >
+                                                return (
+                                                    <div
+                                                        key={social.value}
+                                                        className="flex items-center gap-3"
+                                                    >
+                                                        {/* Icon + Name */}
+                                                        <div className="flex w-32 items-center gap-2 text-neutral-600">
                                                             <Icon size={18} />
-                                                        </button>
-                                                    );
-                                                }
-                                            )}
+                                                            <span>{social.label}</span>
+                                                        </div>
 
-                                            <input
-                                                type="url"
-                                                name={`our_team.cards.${index}.socailmedia.url`}
-                                                value={
-                                                    card.socailmedia?.url ?? ""
-                                                }
-                                                onChange={form.handleChange}
-                                                className={`${inputClass} flex-1`}
-                                                placeholder="رابط الحساب"
-                                            />
+                                                        {/* URL */}
+                                                        <input
+                                                            type="url"
+                                                            name={`our_team.cards.${index}.socailmedia[${socialIndex}].url`}
+                                                            value={
+                                                                card.socailmedia?.[socialIndex]?.url ?? ""
+                                                            }
+                                                            onChange={(e) => {
+                                                                form.setFieldValue(
+                                                                    `our_team.cards.${index}.socailmedia[${socialIndex}].url`,
+                                                                    e.target.value
+                                                                );
+                                                            }}
+                                                            className={`${inputClass} flex-1`}
+                                                            placeholder={`رابط ${social.label}`}
+                                                        />
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                 </div>
-                ))}
+                            ))}
 
                             <button
                                 type="button"

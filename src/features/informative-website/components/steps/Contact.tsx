@@ -107,7 +107,8 @@ export default function Contact() {
                                         name={`contact.phone[${index}].phone`}
                                         placeholder="رقم الهاتف"
                                         className={`${inputClass} text-left`}
-                                        
+                                        style={{ direction: "ltr" }}
+
                                     />
 
                                     <button
@@ -169,6 +170,15 @@ export default function Contact() {
 
                                     <div className="grid gap-4 md:grid-cols-2">
                                         <Field
+                                            name={`contact.address[${index}].en`}
+                                            label="العنوان بالإنجليزية"
+                                            labelName={labelClass}
+                                            className={textareaClass}
+                                            as="textarea"
+                                            style={{ direction: "ltr" }}
+                                        />
+
+                                        <Field
                                             name={`contact.address[${index}].ar`}
                                             label="العنوان بالعربية"
                                             labelName={labelClass}
@@ -176,13 +186,7 @@ export default function Contact() {
                                             as="textarea"
                                         />
 
-                                        <Field
-                                            name={`contact.address[${index}].en`}
-                                            label="العنوان بالإنجليزية"
-                                            labelName={labelClass}
-                                            className={textareaClass}
-                                            as="textarea"
-                                        />
+
                                     </div>
                                 </div>
                             ))}

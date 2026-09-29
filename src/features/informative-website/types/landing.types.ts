@@ -70,13 +70,13 @@ export type SocialPlatform =
 
 export interface SocialMedia {
     url: string;
-    platform: SocialPlatform;
+    icon: SocialPlatform;
 }
 
 export interface TeamCard {
     title: LocalizedText;
     subtitle: LocalizedText;
-    socailmedia: SocialMedia;
+    socailmedia: SocialMedia[];
     img: File | string;
 }
 
