@@ -5,7 +5,7 @@ import ContactFormDialog from "./ContactFormDialog";
 import { ModalTemplate } from "../../../../shared/components/modal/ModalTemplate";
 import { generateColumns } from "./contactForm.columns";
 import { Table } from "../../../../shared/components/Table/Table";
-import Paginate from "../../../../shared/components/paginate/Paginate";
+
 
 export default function ContactFormTable() {
     const [isModalOpen, setIsModalOpen] = useState(false);
