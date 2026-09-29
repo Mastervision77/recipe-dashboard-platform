@@ -53,7 +53,7 @@ export const adminModules: AdminModule[] = [
     sections: [
       {
         items: [
-          { title: "الصفحات", href: "/admin/website", icon: LuFileText },
+          { title: "الصفحات", href: "/admin/website", icon: LuFileText , exact: true  },
           { title: "استمارة التواصل", href: "/admin/website/contact-form", icon: LuFileText },
           // { title: "المدونة", href: "/admin/website/blog", icon: LuNewspaper },
           // { title: "رسائل التواصل", href: "/admin/website/messages", icon: LuMessageSquare },
