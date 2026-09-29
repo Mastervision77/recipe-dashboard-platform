@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
-
 import { Stepper } from "../stepper/Stepper";
 import { useLandingQuery, useUpdateLanding } from "../../api/auth.api";
 import { useMultiStepForm } from "../../hooks/useMultiStepForm";
 import type { LandingData } from "../../types/landing.types";
 import { stepSchemas } from "../../schema/landing.schema";
-
 import { AboutStep } from "../steps/About";
 import { ValuesStep } from "../steps/Values";
 import Why from "../steps/Why";

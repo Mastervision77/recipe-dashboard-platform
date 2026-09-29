@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
+import { lazy, Suspense } from "react";
 import LoginPage from "../../features/auth/pages/LoginPage";
 import { ecommerceRoutes } from "../../features/ecommerce/routes";
 import { recipeRoutes } from "../../features/recipe-platform/routes";
@@ -8,12 +8,17 @@ import MainLayout from "../../layouts/MainLayout";
 import { useAuth } from "../../features/auth/hooks/useAuth";
 import NotFoundPage from "../../pages/NotFound";
 import { informativeRoutes } from "../../features/informative-website/routes";
+import { adminRoutes } from "../../features/admin-settings/routes";
+const Dashboard = lazy(
+    () => import("../../features/admin-settings/pages/dashboard")
+);
 
 export function AppRouter() {
     const { isAuthenticated } = useAuth();
 
     return (
         <BrowserRouter>
+        <Suspense fallback={<div>Loading...</div>}>
             <Routes>
                 {/* Entry point */}
                 <Route
@@ -43,9 +48,10 @@ export function AppRouter() {
                     <Route element={<MainLayout />}>
                         <Route
                             path="/admin/dashboard"
-                            element={<div>Dashboard</div>}
+                            element={<Dashboard />}
                         />
 
+                        {adminRoutes}
                         {ecommerceRoutes}
                         {recipeRoutes}
                         {informativeRoutes}
@@ -58,6 +64,7 @@ export function AppRouter() {
                     element={<NotFoundPage />}
                 />
             </Routes>
+            </Suspense>
         </BrowserRouter>
     );
 }
