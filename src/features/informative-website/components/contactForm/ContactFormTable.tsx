@@ -5,11 +5,14 @@ import ContactFormDialog from "./ContactFormDialog";
 import { ModalTemplate } from "../../../../shared/components/modal/ModalTemplate";
 import { generateColumns } from "./contactForm.columns";
 import { Table } from "../../../../shared/components/Table/Table";
+import Paginate from "../../../../shared/components/paginate/Paginate";
 
 export default function ContactFormTable() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedContact, setSelectedContact] =
         useState<ContactForm | null>(null);
+    const [page, setPage] = useState(1);
+    const [resetPagination, setResetPagination] = useState(false);
 
     const { data, isLoading } = useContactFormQuery();
 
@@ -17,6 +20,12 @@ export default function ContactFormTable() {
         setSelectedContact(contact);
         setIsModalOpen(true);
     }, []);
+
+
+    const handlePageChange = (selectedPage: number) => {
+        setPage(selectedPage);
+        setResetPagination(false);
+    };
 
     const handleClose = useCallback(() => {
         setIsModalOpen(false);
@@ -50,6 +59,18 @@ export default function ContactFormTable() {
                     enableDnD={false}
                 />
             )}
+
+
+            {/* <div className="mt-4 flex justify-end">
+                <Paginate
+                    pagesCount={data?.meta?.last_page ?? 1}
+                    previousLabel={<span>السابق</span>}
+                    nextLabel={<span>التالي</span>}
+                    onPageChange={handlePageChange}
+                    initialPage={page}
+                    resetPagination={resetPagination}
+                />
+            </div> */}
 
             <ModalTemplate
                 isOpen={isModalOpen}
