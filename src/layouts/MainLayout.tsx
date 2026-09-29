@@ -10,7 +10,7 @@ export default function MainLayout() {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="flex min-h-dvh bg-background">
+    <div className="flex min-h-dvh ">
       <Sidebar
         open={mobileOpen}
         collapsed={collapsed}
