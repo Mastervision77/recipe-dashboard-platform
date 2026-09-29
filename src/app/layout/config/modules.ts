@@ -39,8 +39,8 @@ export const adminModules: AdminModule[] = [
       {
         items: [
           { title: "لوحة التحكم", href: "/admin/dashboard", icon: LuLayoutDashboard, exact: true },
-          { title: "المستخدمين", href: "/admin/users", icon: LuUsers },
-          { title: "الإعدادات", href: "/admin/settings", icon: CiSettings },
+          // { title: "المستخدمين", href: "/admin/users", icon: LuUsers },
+          // { title: "الإعدادات", href: "/admin/settings", icon: CiSettings },
         ],
       },
     ],
@@ -54,6 +54,7 @@ export const adminModules: AdminModule[] = [
       {
         items: [
           { title: "الصفحات", href: "/admin/website", icon: LuFileText },
+          { title: "استمارة التواصل", href: "/admin/website/contact-form", icon: LuFileText },
           // { title: "المدونة", href: "/admin/website/blog", icon: LuNewspaper },
           // { title: "رسائل التواصل", href: "/admin/website/messages", icon: LuMessageSquare },
         ],
