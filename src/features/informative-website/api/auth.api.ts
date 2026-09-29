@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "../../../lib/axios";
-import type { LandingData } from "../types/landing.types";
+import type { LandingDto } from "../types/landing.types";
 import { buildLandingFormData } from "../utils/buildLandingFormData";
 import { toast } from "sonner";
 import { queryClient } from "../../../lib/queryClient";
@@ -8,8 +8,8 @@ import { queryClient } from "../../../lib/queryClient";
 const landingKey = (id: number) => ["landing", id] as const;
 
 // fetching data
-async function fetchLanding(id: number): Promise<LandingData> {
-    const { data } = await api.get<LandingData>(
+async function fetchLanding(id: number): Promise<LandingDto> {
+    const { data } = await api.get<LandingDto>(
         `/landings/${id}`
     );
 
@@ -30,7 +30,7 @@ export function useLandingQuery(id: number) {
 export function useUpdateLanding(id: number) {
 
     return useMutation({
-        mutationFn: async (values: LandingData) => {
+        mutationFn: async (values: LandingDto) => {
             const formData = buildLandingFormData(values);
             const res = await api.post(`/landings/${id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },

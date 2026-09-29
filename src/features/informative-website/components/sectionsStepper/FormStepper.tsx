@@ -6,7 +6,7 @@ import { useLandingQuery, useUpdateLanding } from "../../api/auth.api";
 import { useMultiStepForm } from "../../hooks/useMultiStepForm";
 import type { LandingData } from "../../types/landing.types";
 import { stepSchemas } from "../../schema/landing.schema";
-import { HeroStep } from "../steps/hero";
+
 import { AboutStep } from "../steps/About";
 import { ValuesStep } from "../steps/Values";
 import Why from "../steps/Why";
@@ -16,6 +16,7 @@ import Team from "../steps/Team";
 import FAQ from "../steps/FAQ";
 import { Button } from "../../../../shared/components/Button/Button";
 import Contact from "../steps/Contact";
+import { HeroStep } from "../steps/Hero";
 
 
 
@@ -65,7 +66,7 @@ export function LandingForm() {
         await mutateAsync(values);
       }}
     >
-      {({values}) => {
+      {() => {
 
 return( <Form dir="rtl" className="flex-1">
           <Stepper

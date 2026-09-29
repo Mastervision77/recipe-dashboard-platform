@@ -44,7 +44,7 @@ export interface WhyChooseUsSection {
 }
 
 export interface ServicesCard {
-    itle: LocalizedText;
+    title: LocalizedText;
     subtitle: LocalizedText;
     icon: string;
     img: string | File;
@@ -116,6 +116,8 @@ export interface ContactSection {
     phone: ContactPhone[];
     address: ContactAddress[];
 }
+
+
 export interface LandingData {
     id: number;
     header: HeroSection;

@@ -71,8 +71,21 @@ export function buildLandingFormData(values: LandingData): FormData {
   values.our_team?.cards?.forEach((card, i) => {
     appendBilingual(fd, `ourteamsectioncard[${i}][title]`, card.title);
     appendBilingual(fd, `ourteamsectioncard[${i}][subtitle]`, card.subtitle);
-    if (card.socailmedia?.url) fd.append(`ourteamsectioncard[${i}][socailmedia][url]`, card.socailmedia.url);
-    if (card.socailmedia?.icon) fd.append(`ourteamsectioncard[${i}][socailmedia][icon]`, card.socailmedia.icon);
+   card.socailmedia?.forEach((social, socialIndex) => {
+    if (social.url) {
+        fd.append(
+            `ourteamsectioncard[${i}][socailmedia][${socialIndex}][url]`,
+            social.url
+        );
+    }
+
+    if (social.icon) {
+        fd.append(
+            `ourteamsectioncard[${i}][socailmedia][${socialIndex}][icon]`,
+            social.icon
+        );
+    }
+});
     appendImg(fd, `ourteamsectioncard[${i}][img]`, card.img);
   });
 

@@ -1,12 +1,13 @@
 import { CiGlobe, CiSettings } from "react-icons/ci";
-import { LuChefHat, LuClipboardList, LuFileText, LuLayoutDashboard, LuMessageSquare, LuNewspaper, LuPackage, LuShoppingBag, LuTags, LuUsers, LuUtensils } from "react-icons/lu";
+import type { IconType } from "react-icons/lib";
+import {  LuFileText, LuLayoutDashboard, LuUsers  } from "react-icons/lu";
 
 
 export type NavItem = {
   title: string;
   /** For a group with children, this is just the URL prefix used to detect "active". */
   href: string;
-  icon?: ReactIcon;
+  icon?: IconType;
   /** Match the exact path only (use for dashboard / index pages). */
   exact?: boolean;
   children?: NavItem[];
@@ -17,7 +18,7 @@ export type NavSection = { title?: string; items: NavItem[] };
 export type AdminModule = {
   key: "main" | "ecommerce" | "website" | "recipes";
   title: string;
-  icon: ReactIcon;
+  icon: IconType;
   /** URL prefix that owns this module. `main` is the fallback module. */
   basePath: string;
   sections: NavSection[];

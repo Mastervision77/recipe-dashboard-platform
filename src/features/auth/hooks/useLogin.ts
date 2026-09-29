@@ -15,7 +15,8 @@ export function useLogin() {
         mutationFn: loginApi,
 
        onSuccess: (response) => {
-    const { access_token, user, permissions } = response.data;
+    // const { access_token, user, permissions } = response.data;
+    const { access_token, user } = response.data;
 
     login(user, access_token);
      toast.success("تم تسجيل الدخول بنجاح");
