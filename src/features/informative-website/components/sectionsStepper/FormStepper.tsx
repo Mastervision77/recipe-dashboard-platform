@@ -15,6 +15,7 @@ import Catalog from "../steps/Catalog";
 import Team from "../steps/Team";
 import FAQ from "../steps/FAQ";
 import { Button } from "../../../../shared/components/Button/Button";
+import Contact from "../steps/Contact";
 
 
 
@@ -27,11 +28,11 @@ const steps = [{ id: "hero", label: "قسم الرئيسي" } ,
   { id: "catalog", label: "قسم الكتالوج" },
   { id: "our_team", label: "قسم فريقنا" },
   { id: "faq", label: "قسم الاسئلة و الاجوبة" },
+  { id: "contact", label: "قسم التواصل" },
+];
 
-  /*, ...more */];
 
-
-const stepComponents = [HeroStep , AboutStep , ValuesStep , Why , Services ,Catalog , Team , FAQ /*, AboutStep */];
+const stepComponents = [HeroStep , AboutStep , ValuesStep , Why , Services ,Catalog , Team , FAQ , Contact /*, AboutStep */];
 
 export function LandingForm() {
   const { data, isLoading } = useLandingQuery(1);

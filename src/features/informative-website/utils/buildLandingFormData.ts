@@ -84,18 +84,18 @@ export function buildLandingFormData(values: LandingData): FormData {
   });
 
   // // ===== Contact =====
-  // appendBilingual(fd, "contactsectiontitle", values.contact?.title);
-  // appendBilingual(fd, "contactsectionsubtitle", values.contact?.subtitle);
-  // values.contact?.email?.forEach((item, i) => {
-  //   if (item.email) fd.append(`contactsectionemail[${i}][email]`, item.email);
-  // });
-  // values.contact?.phone?.forEach((item, i) => {
-  //   if (item.phone) fd.append(`contactsectionphone[${i}][phone]`, item.phone);
-  // });
-  // values.contact?.address?.forEach((item, i) => {
-  //   if (item.ar) fd.append(`contactsectionaddress[${i}][ar]`, item.ar);
-  //   if (item.en) fd.append(`contactsectionaddress[${i}][en]`, item.en);
-  // });
+  appendBilingual(fd, "contactsectiontitle", values.contact?.title);
+  appendBilingual(fd, "contactsectionsubtitle", values.contact?.subtitle);
+  values.contact?.email?.forEach((item, i) => {
+    if (item.email) fd.append(`contactsectionemail[${i}][email]`, item.email);
+  });
+  values.contact?.phone?.forEach((item, i) => {
+    if (item.phone) fd.append(`contactsectionphone[${i}][phone]`, item.phone);
+  });
+  values.contact?.address?.forEach((item, i) => {
+    if (item.ar) fd.append(`contactsectionaddress[${i}][ar]`, item.ar);
+    if (item.en) fd.append(`contactsectionaddress[${i}][en]`, item.en);
+  });
 
   // Method spoofing لإن الـ endpoint فعليًا PUT
   fd.append("_method", "PUT");

@@ -96,7 +96,26 @@ export interface FaqSection {
     description: LocalizedText;
     faq: FaqItem[];
 }
+export interface ContactEmail {
+    email: string;
+}
 
+export interface ContactPhone {
+    phone: string;
+}
+
+export interface ContactAddress {
+    ar: string;
+    en: string;
+}
+
+export interface ContactSection {
+    title: LocalizedText;
+    subtitle: LocalizedText;
+    email: ContactEmail[];
+    phone: ContactPhone[];
+    address: ContactAddress[];
+}
 export interface LandingData {
     id: number;
     header: HeroSection;
@@ -107,6 +126,7 @@ export interface LandingData {
     catalog:CatalogSection;
     our_team: TeamSection;
     faq: FaqSection;
+    contact: ContactSection;
 }
 
 export interface LandingDto {
