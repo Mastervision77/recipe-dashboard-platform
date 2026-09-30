@@ -24,7 +24,7 @@ export function useLogin() {
     // لو عندك PermissionContext
     // setPermissions(permissions);
 
-    navigate("//admin/settings/dashboard", { replace: true });
+    navigate("/admin/settings/dashboard", { replace: true });
 },
  onError: (error) => {
             toast.error(getErrorMessage(error));

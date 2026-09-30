@@ -20,6 +20,8 @@ export default function ViewRoleDialog({
 }: Props) {
     if (!role) return null;
 
+    console.log(role.permissions?.map((l) => l.label))
+
     return (
         <>
             {/* Header */}
@@ -44,10 +46,23 @@ export default function ViewRoleDialog({
                     />
                 </div>
 
-                <InfoItem
-                    label="الصلاحيات"
-                    value={role.permissions.join("، ")}
-                />
+                <div>
+    <p className="mb-2 text-sm font-medium text-gray-500">
+        الصلاحيات
+    </p>
+
+    <div className="flex flex-wrap gap-2">
+        {role.permissions?.map((permission) => (
+            <span
+                key={permission.id}
+                className="rounded-full bg-green-50 px-3 py-1.5 text-xs font-medium text-[#0d5c34]"
+            >
+                {permission.label}
+            </span>
+        ))}
+    </div>
+</div>
+                
 
             </div>
 

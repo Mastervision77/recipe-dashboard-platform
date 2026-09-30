@@ -1,7 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import type { Role } from "../../types/roles.types";
 import ViewButtons from "../../../../shared/components/view/ViewButtons";
-import { ActionDropdown } from "../../../../shared/components/ActionDropdown/ActionDropdown";
 import EditButton from "../../../../shared/components/edit/EditButton";
 import DeleteButton from "../../../../shared/components/delete/DeleteButton";
 
