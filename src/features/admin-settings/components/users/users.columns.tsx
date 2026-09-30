@@ -3,13 +3,18 @@ import ViewButtons from "../../../../shared/components/view/ViewButtons";
 import EditButton from "../../../../shared/components/edit/EditButton";
 import DeleteButton from "../../../../shared/components/delete/DeleteButton";
 import type { User } from "../../types/users.types";
+import StatusToggle from "../../../../shared/components/StatusToggle/StatusToggle";
 
 const columnHelper = createColumnHelper<User>();
 
-export const generateUserColumns = ({ onView, onEdit, onDelete }: {
+export const generateUserColumns = ({ onView, onEdit, onDelete ,onStatusChange }: {
     onView?: (User: User) => void;
     onEdit?: (User: User) => void;
     onDelete?: (User: User) => void;
+    onStatusChange?: (
+        user: User,
+        isActive: boolean
+    ) => Promise<void>;
 }) => [
         columnHelper.accessor("name", {
             header: "اسم الموظف",
@@ -23,6 +28,21 @@ export const generateUserColumns = ({ onView, onEdit, onDelete }: {
                 return role;
             },
         }),
+        columnHelper.accessor("is_active", {
+    header: "الحالة",
+    cell: (info) => {
+        const user = info.row.original;
+
+        return (
+            <StatusToggle
+                value={user.is_active}
+                onChange={(value) =>
+                    onStatusChange?.(user, value)
+                }
+            />
+        );
+    },
+}),
 
         columnHelper.display({
             id: "actions",

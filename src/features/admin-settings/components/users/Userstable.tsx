@@ -6,7 +6,7 @@ import Paginate from "../../../../shared/components/pagination/Paginate";
 import Loading from "../../../../shared/components/Loading/Loading";
 import { deleteAlert } from "../../../../shared/components/alert/deleteAlert";
 import type { User } from "../../types/users.types";
-import { useDeleteUser, useUsersQuery } from "../../api/users.api";
+import { useDeleteUser, useToggleUserStatus, useUsersQuery } from "../../api/users.api";
 import { generateUserColumns } from "./users.columns";
 import { ModalTemplate } from "../../../../shared/components/modal/ModalTemplate";
 import { Button } from "../../../../shared/components/Button/Button";
@@ -25,7 +25,7 @@ export default function UsersTable() {
     const { data, isLoading, isFetching } = useUsersQuery(page);
     const { rows, pagesCount } = getPageView(data, page);
 
-
+const { mutateAsync: toggleUserStatus } = useToggleUserStatus();
     const { mutateAsync: deleteUser } = useDeleteUser();
 
     useEffect(() => {
@@ -64,7 +64,17 @@ export default function UsersTable() {
         setIsModalOpen(true);
     }, []);
 
-    const columns = useMemo(() => generateUserColumns({ onView: handleView, onEdit: handleEdit, onDelete: handleDelete }), [handleView, handleEdit, handleDelete]);
+   const handleStatusChange = useCallback(
+    async (user: User, isActive: boolean) => {
+        await toggleUserStatus({
+            id: user.id,
+            is_active: isActive,
+        });
+    },
+    [toggleUserStatus]
+);
+
+    const columns = useMemo(() => generateUserColumns({ onView: handleView, onEdit: handleEdit, onDelete: handleDelete , onStatusChange : handleStatusChange }), [handleView, handleEdit, handleDelete , handleStatusChange]);
 
     return (
         <div className="p-6">

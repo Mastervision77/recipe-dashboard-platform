@@ -116,3 +116,39 @@ export function useDeleteUser() {
         },
     });
 }
+
+
+
+async function updateUser(id: number, values: Partial<UserPayload>) {
+    const { data } = await api.put(`/auth/users/${id}`, values);
+    return data;
+}
+
+
+// toggle for users
+export function useToggleUserStatus() {
+    return useMutation({
+        mutationFn: ({
+            id,
+            is_active,
+        }: {
+            id: number;
+            is_active: boolean;
+        }) =>
+            updateUser(id, {
+                is_active,
+            }),
+
+        onSuccess: () => {
+            toast.success("تم تعديل حالة الموظف بنجاح");
+
+            queryClient.invalidateQueries({
+                queryKey: usersKey,
+            });
+        },
+
+        onError: (err) => {
+            toast.error(getErrorMessage(err));
+        },
+    });
+}
