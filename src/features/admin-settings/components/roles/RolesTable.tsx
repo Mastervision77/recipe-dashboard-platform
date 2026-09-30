@@ -63,7 +63,6 @@ export default function RolesTable() {
                     className="flex cursor-pointer items-center gap-2 rounded-full bg-secondary-gradient px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                 >
                     <LuPlus size={16} />
-                    إضافة دور
                 </Link>
             </div>
 
