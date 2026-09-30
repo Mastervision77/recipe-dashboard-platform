@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LuPlus } from "react-icons/lu";
-
 import { useDeleteRole, useRolesQuery } from "../../api/roles.api";
-import { generateRoleColumns } from "./roles.columns";
 import { Table } from "../../../../shared/components/Table/Table";
 import { getPageView } from "../../../../lib/pagination";
 import Paginate from "../../../../shared/components/pagination/Paginate";
@@ -12,6 +10,7 @@ import type { Role } from "../../types/roles.types";
 import { ModalTemplate } from "../../../../shared/components/modal/ModalTemplate";
 import { deleteAlert } from "../../../../shared/components/alert/deleteAlert";
 import ViewRoleDialog from "./actions/ViewRoleDialog";
+import { generateRoleColumns } from "./roles.columns";
 
 
 export default function RolesTable() {

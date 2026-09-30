@@ -1,6 +1,7 @@
 import { CiGlobe, CiSettings } from "react-icons/ci";
 import type { IconType } from "react-icons/lib";
 import {  LuFileText, LuLayoutDashboard, LuShieldCheck  } from "react-icons/lu";
+import { PiUsers } from "react-icons/pi";
 
 
 export type NavItem = {
@@ -45,6 +46,7 @@ export const adminModules: AdminModule[] = [
             icon: CiSettings,
             children: [
               { title: "الأدوار", href: "/admin/settings/roles", icon: LuShieldCheck },
+              { title: "الموظفين", href: "/admin/settings/users", icon: PiUsers },
             ],
           },
           // { title: "المستخدمين", href: "/admin/users", icon: LuUsers },

@@ -20,8 +20,6 @@ export default function ViewRoleDialog({
 }: Props) {
     if (!role) return null;
 
-    console.log(role.permissions?.map((l) => l.label))
-
     return (
         <>
             {/* Header */}
