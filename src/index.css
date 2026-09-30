@@ -71,3 +71,13 @@ body {
 .team-pagination .swiper-pagination-bullet-active {
   background-color: #0d5c34 !important;
 }
+
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}

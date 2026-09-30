@@ -1,23 +1,29 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { api } from "../../../lib/axios";
 import { queryClient } from "../../../lib/queryClient";
 import type {
   ContactFormPayload,
   ContactFormResponse,
+  ContactForm,
 } from "../types/contact.types";
+import { normalizeList } from "../../../lib/pagination";
+
 
 export const contactFormKey = ["contact-form"] as const;
 
-async function fetchContactForm(): Promise<ContactFormResponse> {
-  const { data } = await api.get<ContactFormResponse>("/landingcontactform");
-  return data;
+async function fetchContactForm(page: number): Promise<ContactFormResponse> {
+  const { data } = await api.get("/landingcontactform", { params: { page } });
+  return normalizeList<ContactForm>(data);
 }
 
-export function useContactFormQuery() {
+export function useContactFormQuery(page: number) {
   return useQuery({
-    queryKey: contactFormKey,
-    queryFn: fetchContactForm,
+    // الـ page جوّه الـ key عشان كل صفحة تتكاشّ لوحدها
+    queryKey: [...contactFormKey, page],
+    queryFn: () => fetchContactForm(page),
+    // يفضل يعرض الصفحة القديمة لحد ما الجديدة توصل (من غير وميض)
+    placeholderData: keepPreviousData,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     staleTime: Infinity,
