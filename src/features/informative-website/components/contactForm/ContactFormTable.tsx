@@ -7,6 +7,7 @@ import { generateColumns } from "./contactForm.columns";
 import { Table } from "../../../../shared/components/Table/Table";
 import Paginate from "../../../../shared/components/pagination/Paginate";
 import { getPageView } from "../../../../lib/pagination";
+import Loading from "../../../../shared/components/Loading/Loading";
 
 
 export default function ContactFormTable() {
@@ -51,7 +52,7 @@ export default function ContactFormTable() {
             </div>
 
             {isLoading ? (
-                <div>Loading...</div>
+                <Loading />
             ) : (
                 <div className={isFetching ? "opacity-60 transition-opacity" : ""}>
                     <Table data={rows} columns={columns} />

@@ -1,6 +1,6 @@
 import { CiGlobe, CiSettings } from "react-icons/ci";
 import type { IconType } from "react-icons/lib";
-import {  LuFileText, LuLayoutDashboard, LuShieldCheck, LuUsers  } from "react-icons/lu";
+import {  LuFileText, LuLayoutDashboard, LuShieldCheck  } from "react-icons/lu";
 
 
 export type NavItem = {

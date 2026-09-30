@@ -4,7 +4,7 @@ import { api } from "../../../lib/axios";
 import { queryClient } from "../../../lib/queryClient";
 import { getErrorMessage } from "../../../lib/getErrorMessage";
 import { normalizeList } from "../../../lib/pagination";
-import type { Permission, Role, RolePayload, RolesResponse } from "../types/roles.types";
+import type { PermissionGroup, Role, RolePayload, RolesResponse } from "../types/roles.types";
 
 
 
@@ -29,9 +29,10 @@ export function useRolesQuery(page: number) {
 }
 
 // GET /auth/permissions
-async function fetchPermissions(): Promise<Permission[]> {
+// بيرجّع الصلاحيات متقسمة جروبات: [{ group, permissions: [...] }]
+async function fetchPermissions(): Promise<PermissionGroup[]> {
   const { data } = await api.get("/auth/permissions");
-  return normalizeList<Permission>(data).data;
+  return Array.isArray(data?.data) ? data.data : [];
 }
 
 export function usePermissionsQuery(enabled = true) {

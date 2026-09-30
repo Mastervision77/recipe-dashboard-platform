@@ -9,6 +9,7 @@ import { useAuth } from "../../features/auth/hooks/useAuth";
 import NotFoundPage from "../../pages/NotFound";
 import { informativeRoutes } from "../../features/informative-website/routes";
 import { adminRoutes } from "../../features/admin-settings/routes";
+import Loading from "../../shared/components/Loading/Loading";
 const Dashboard = lazy(
     () => import("../../features/admin-settings/pages/dashboard")
 );
@@ -18,7 +19,7 @@ export function AppRouter() {
 
     return (
         <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div><Loading /></div>}>
             <Routes>
                 {/* Entry point */}
                 <Route
