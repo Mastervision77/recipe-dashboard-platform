@@ -22,7 +22,7 @@ export default function NotFoundPage() {
                 {
                     isAuthenticated ? (
                         <Link
-                            to="/admin/dashboard"
+                            to="//admin/settings/dashboard"
                             className="inline-block mt-6 rounded-lg bg-secondary-500 px-6 py-3 text-white transition hover:opacity-90"
                         >
                             العودة للرئيسية

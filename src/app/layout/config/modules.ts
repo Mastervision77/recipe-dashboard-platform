@@ -1,6 +1,6 @@
 import { CiGlobe, CiSettings } from "react-icons/ci";
 import type { IconType } from "react-icons/lib";
-import {  LuFileText, LuLayoutDashboard, LuUsers  } from "react-icons/lu";
+import {  LuFileText, LuLayoutDashboard, LuShieldCheck, LuUsers  } from "react-icons/lu";
 
 
 export type NavItem = {
@@ -34,11 +34,19 @@ export const adminModules: AdminModule[] = [
     key: "main",
     title: "الرئيسية",
     icon: LuLayoutDashboard,
-    basePath: "/admin/dashboard",
+    basePath: "/admin/settings",
     sections: [
       {
         items: [
-          { title: "لوحة التحكم", href: "/admin/dashboard", icon: LuLayoutDashboard, exact: true },
+          { title: "لوحة التحكم", href: "/admin/settings/dashboard", icon: LuLayoutDashboard, exact: true },
+          {
+            title: "الإعدادات",
+            href: "/admin/settings",
+            icon: CiSettings,
+            children: [
+              { title: "الأدوار", href: "/admin/settings/roles", icon: LuShieldCheck },
+            ],
+          },
           // { title: "المستخدمين", href: "/admin/users", icon: LuUsers },
           // { title: "الإعدادات", href: "/admin/settings", icon: CiSettings },
         ],
