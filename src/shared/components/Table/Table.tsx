@@ -20,9 +20,9 @@ export function Table<T extends object>({
     });
 
     return (
-        <div className="w-full overflow-x-auto  hide-scrollbar rounded-xl border border-gray-100 bg-white shadow-sm">
+        <div className="w-full rounded-xl border overflow-x-auto hide-scrollbar border-gray-100 py-10 bg-white shadow-sm">
         <div className="overflow-visible">
-            <table className="w-full border-collapse min-w-max text-right text-xs md:text-sm">
+            <table className="w-full border-collapse text-right text-xs md:text-sm">
                 <thead>
                     {table.getHeaderGroups().map((headerGroup) => (
                         <tr

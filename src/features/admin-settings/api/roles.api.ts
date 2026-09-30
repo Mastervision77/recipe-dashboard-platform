@@ -103,3 +103,26 @@ export function useUpdateRole() {
     },
   });
 }
+
+
+
+export function useDeleteRole() {
+    return useMutation({
+        mutationFn: async (id: number) => {
+            const { data } = await api.delete(`/auth/roles/${id}`);
+            return data;
+        },
+
+        onSuccess: () => {
+            toast.success("تم حذف الدور بنجاح");
+
+            queryClient.invalidateQueries({
+                queryKey: rolesKey,
+            });
+        },
+
+        onError: (err) => {
+            toast.error(getErrorMessage(err));
+        },
+    });
+}

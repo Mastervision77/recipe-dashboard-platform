@@ -70,7 +70,7 @@ export const ActionDropdown: React.FC<ActionDropdownProps> = ({
 
             {isOpen && (
                 <div
-                    className={`absolute z-30 mt-1.5 w-14 p-2 rounded-xl bg-white shadow-xl ring-1 ring-black/5 ${align === "right" ? "right-0" : "left-0"
+                    className={`absolute z-30 mt-1.5  p-2 rounded-xl bg-white shadow-xl ring-1 ring-black/5 ${align === "right" ? "right-0" : "left-0"
                         }`}
                     role="menu"
                 >

@@ -7,7 +7,7 @@ export default function ViewButtons({ onClick }: { onClick: () => void }) {
       <Button
          type="button"
          onClick={onClick}
-         className="rounded-md px-3 py-1 text-sm cursor-pointer hover:bg-gray-300"
+         className="rounded-md px-3 py-1 text-sm cursor-pointer transition-colors duration-300 hover:bg-gray-300"
       >
          <FaEye />
       </Button>
