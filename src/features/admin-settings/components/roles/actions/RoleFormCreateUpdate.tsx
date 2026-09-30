@@ -1,51 +1,97 @@
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { isAxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { LuLoader } from "react-icons/lu";
-import { Button } from "../../../../shared/components/Button/Button";
-import { FormLabel } from "../../../../shared/components/FormLabel/FormLabel";
-import { useCreateRole, usePermissionsQuery } from "../../api/roles.api";
-import type { RolePayload } from "../../types/roles.types";
-import PermissionGroupCard from "./PermissionGroupCard";
-import { RoleSchema } from "../../schema/roles.schema";
-import { inputClass } from "../../../informative-website/shared/stylings/ClassesCss";
-import Loading from "../../../../shared/components/Loading/Loading";
+import { Button } from "../../../../../shared/components/Button/Button";
+import { FormLabel } from "../../../../../shared/components/FormLabel/FormLabel";
+import { useCreateRole, usePermissionsQuery, useRoleQuery, useUpdateRole } from "../../../api/roles.api";
+import type { RolePayload } from "../../../types/roles.types";
+import PermissionGroupCard from "../permissionComponets/PermissionGroupCard";
+import { RoleSchema } from "../../../schema/roles.schema";
+import { inputClass } from "../../../../informative-website/shared/stylings/ClassesCss";
+import Loading from "../../../../../shared/components/Loading/Loading";
 
 
 
 const LIST_PATH = "/admin/settings/roles";
 
-export default function RoleForm() {
+export default function RoleFormCreateUpdate() {
+    const { id } = useParams();
+    const isEdit = id !== undefined;
+    const roleId = isEdit ? Number(id) : undefined;
     const navigate = useNavigate();
-    const { mutateAsync, isPending  } = useCreateRole();
+    // create role
+    const { mutateAsync: createRole, isPending: isCreating } = useCreateRole();
+    // update role
+    const { mutateAsync: updateRole, isPending: isUpdating } = useUpdateRole();
+    // fetch premissions
     const { data: groups = [], isLoading, isError } = usePermissionsQuery();
+    // fetch role by id (GET auth/roles/:id) - بيشتغل في التعديل بس
+    const {
+        data: role,
+        isLoading: isRoleLoading,
+        isError: isRoleError,
+    } = useRoleQuery(roleId);
+
+    const isPending = isCreating || isUpdating;
+
 
     const allIds = groups.flatMap((g) => g.permissions.map((p) => p.id));
 
-    const initialValues: RolePayload = { name: "", permissions: [] };
+    const initialValues: RolePayload = {
+        name: role?.name ?? "",
+        permissions:
+            role?.permissions?.map((p) => (typeof p === "number" ? p : p.id)) ?? [],
+    };
+
+    // console.log(groups)
 
 
-    if(isLoading) return <Loading />;
+    const handleSubmit = async (
+    values: RolePayload,
+    { setFieldError }: { setFieldError: (field: string, message: string) => void }
+) => {
+    try {
+        const payload: RolePayload = {
+            name: values.name.trim(),
+            permissions: values.permissions,
+        };
+
+        if (isEdit) {
+            await updateRole({
+                id: roleId as number,
+                values: payload,
+            });
+        } else {
+            await createRole(payload);
+        }
+
+        navigate(LIST_PATH);
+    } catch (err) {
+        if (isAxiosError(err)) {
+            const nameError = err.response?.data?.errors?.name?.[0];
+
+            if (nameError) {
+                setFieldError("name", nameError);
+            }
+        }
+    }
+};
+
+
+    // استني الصلاحيات + بيانات الدور (في التعديل) قبل ما تعرضي الفورم
+    if (isLoading || (isEdit && isRoleLoading)) return <Loading />;
+
+    if (isEdit && (isRoleError || !role)) {
+        return <p className="text-sm text-red-600">تعذر تحميل بيانات الدور</p>;
+    }
 
     return (
         <Formik
+            key={roleId ?? "new"}
             initialValues={initialValues}
             validationSchema={RoleSchema}
-            onSubmit={async (values, { setFieldError }) => {
-                try {
-                    await mutateAsync({
-                        name: values.name.trim(),
-                        permissions: values.permissions,
-                    });
-                    navigate(LIST_PATH);
-                } catch (err) {
-                    // أخطاء الـ validation اللي جاية من الباك (422)
-                    if (isAxiosError(err)) {
-                        const nameError = err.response?.data?.errors?.name?.[0];
-                        if (nameError) setFieldError("name", nameError);
-                    }
-                }
-            }}
+            onSubmit={handleSubmit}
         >
             {({ values, setFieldValue }) => {
                 const selected = new Set(values.permissions);

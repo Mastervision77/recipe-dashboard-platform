@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import type { PermissionGroup } from "../../types/roles.types";
+import type { PermissionGroup } from "../../../types/roles.types";
 import { getGroupLabel } from "./permissionGroupLabels";
 
 type Props = {
