@@ -3,8 +3,9 @@ import type { Role } from "../../types/roles.types";
 import ViewButtons from "../../../../shared/components/view/ViewButtons";
 import EditButton from "../../../../shared/components/edit/EditButton";
 import DeleteButton from "../../../../shared/components/delete/DeleteButton";
+import type { AppTableFeatures } from "../../../../shared/components/Table/tableConfig";
 
-const columnHelper = createColumnHelper<Role>();
+const columnHelper = createColumnHelper<AppTableFeatures ,Role>();
 
 export const generateRoleColumns = ({ onView, onEdit, onDelete }: {
     onView?: (role: Role) => void;

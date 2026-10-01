@@ -1,13 +1,7 @@
 import { Button } from "../../../../../shared/components/Button/Button";
 import InfoItem from "../../../../informative-website/shared/Infoitems/InfoItem";
+import type { Role } from "../../../types/roles.types";
 
-
-type Role = {
-    id: number;
-    name: string;
-    permissions: string[];
-    created_at: string;
-};
 
 type Props = {
     role: Role | null;

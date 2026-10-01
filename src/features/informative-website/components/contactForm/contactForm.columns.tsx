@@ -1,9 +1,10 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import type { ContactForm } from "../../types/contact.types";
 import ViewButtons from "../../../../shared/components/view/ViewButtons";
+import type { AppTableFeatures } from "../../../../shared/components/Table/tableConfig";
 
 
-const columnHelper = createColumnHelper<ContactForm>();
+const columnHelper = createColumnHelper<AppTableFeatures , ContactForm>();
 
 export const generateColumns = ({
     onView,
@@ -61,7 +62,7 @@ export const generateColumns = ({
             id: "actions",
             header: "الاجراءات",
             cell: (info) => {
-                const contact = info.row.original;
+                const contact = info.row.original as ContactForm;
 
                 return (
                     <ViewButtons onClick={() => onView?.(contact)} />

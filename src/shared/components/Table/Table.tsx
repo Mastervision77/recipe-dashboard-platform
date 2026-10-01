@@ -2,12 +2,15 @@ import {
     useTable,
     type ColumnDef,
 } from "@tanstack/react-table";
-import { features } from "./tableConfig";
+import { features, type AppTableFeatures  } from "./tableConfig";
 
 type TableProps<T extends object> = {
     data: T[];
-    columns: ColumnDef<typeof features, T>[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    columns: ColumnDef<AppTableFeatures, T, any>[];
 };
+
+
 
 export function Table<T extends object>({
     data,

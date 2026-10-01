@@ -4,9 +4,9 @@ import EditButton from "../../../../shared/components/edit/EditButton";
 import DeleteButton from "../../../../shared/components/delete/DeleteButton";
 import type { User } from "../../types/users.types";
 import StatusToggle from "../../../../shared/components/StatusToggle/StatusToggle";
-import type { features } from "../../../../shared/components/Table/tableConfig";
+import type { AppTableFeatures } from "../../../../shared/components/Table/tableConfig";
 
-const columnHelper = createColumnHelper<typeof features, User>();
+const columnHelper = createColumnHelper<AppTableFeatures, User>();
 
 export const generateUserColumns = ({ onView, onEdit, onDelete ,onStatusChange }: {
     onView?: (User: User) => void;

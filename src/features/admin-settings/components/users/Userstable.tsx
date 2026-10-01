@@ -25,7 +25,7 @@ export default function UsersTable() {
     const { data, isLoading, isFetching } = useUsersQuery(page);
     const { rows, pagesCount } = getPageView(data, page);
 
-const { mutateAsync: toggleUserStatus } = useToggleUserStatus();
+    const { mutateAsync: toggleUserStatus } = useToggleUserStatus();
     const { mutateAsync: deleteUser } = useDeleteUser();
 
     useEffect(() => {
@@ -64,18 +64,20 @@ const { mutateAsync: toggleUserStatus } = useToggleUserStatus();
         setIsModalOpen(true);
     }, []);
 
-   const handleStatusChange = useCallback(
-    async (user: User, isActive: boolean) => {
-        await toggleUserStatus({
-            id: user.id,
-            is_active: isActive,
-        });
-    },
-    [toggleUserStatus]
-);
-const filteredUsers = rows.filter((user) => user.id !== 1);
+    const handleStatusChange = useCallback(
+        async (user: User, isActive: boolean) => {
+            await toggleUserStatus({
+                id: user.id,
+                is_active: isActive,
+            });
+        },
+        [toggleUserStatus]
+    );
+    const filteredUsers: User[] = rows.filter(
+        (user: User) => user.id !== 1
+    );
 
-    const columns = useMemo(() => generateUserColumns({ onView: handleView, onEdit: handleEdit, onDelete: handleDelete , onStatusChange : handleStatusChange }), [handleView, handleEdit, handleDelete , handleStatusChange]);
+    const columns = useMemo(() => generateUserColumns({ onView: handleView, onEdit: handleEdit, onDelete: handleDelete, onStatusChange: handleStatusChange }), [handleView, handleEdit, handleDelete, handleStatusChange]);
 
     return (
         <div className="p-6">
