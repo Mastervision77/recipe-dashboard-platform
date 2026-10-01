@@ -72,7 +72,7 @@ return( <Form dir="rtl" className="flex-1">
             currentStep={currentStep}
             openStep={openStep}
             onStepClick={setOpenStep}
-            isStepEnabled={(i) => i <= currentStep}
+            isStepEnabled={(i: number) => i <= currentStep}
           >
             {(i) => {
               const StepComponent = stepComponents[i];

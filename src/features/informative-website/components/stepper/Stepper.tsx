@@ -88,6 +88,7 @@ export function Stepper({
     steps: Step[];
     currentStep: number;
     openStep: number;
+    isStepEnabled: (index: number) => boolean;
     onStepClick: (index: number) => void;
     onSave?: (index: number) => void;
     saveLabel?: string;
