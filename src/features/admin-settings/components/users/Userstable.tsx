@@ -73,6 +73,7 @@ const { mutateAsync: toggleUserStatus } = useToggleUserStatus();
     },
     [toggleUserStatus]
 );
+const filteredUsers = rows.filter((user) => user.id !== 1);
 
     const columns = useMemo(() => generateUserColumns({ onView: handleView, onEdit: handleEdit, onDelete: handleDelete , onStatusChange : handleStatusChange }), [handleView, handleEdit, handleDelete , handleStatusChange]);
 
@@ -93,7 +94,7 @@ const { mutateAsync: toggleUserStatus } = useToggleUserStatus();
                 <Loading />
             ) : (
                 <div className={isFetching ? "opacity-60 transition-opacity" : ""}>
-                    <Table data={rows} columns={columns} />
+                    <Table data={filteredUsers} columns={columns} />
                 </div>
             )}
 
