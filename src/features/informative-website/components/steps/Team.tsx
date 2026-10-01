@@ -48,16 +48,6 @@ const emptyTeamMember = {
     img: "",
 };
 
-const normalizeSocialMedia = (socialmedia = []) => {
-    return socialMediaOptions.map((social) => {
-        const existing = socialmedia.find((item) => item.icon === social.value);
-
-        return {
-            url: existing?.url ?? "",
-            icon: social.value,
-        };
-    });
-};
 
 export default function Team() {
     return (
