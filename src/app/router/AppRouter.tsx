@@ -26,7 +26,7 @@ export function AppRouter() {
                     path="/"
                     element={
                         <Navigate
-                            to={isAuthenticated ? "//admin/settings/dashboard" : "/login"}
+                            to={isAuthenticated ? "/admin/settings/dashboard" : "/login"}
                             replace
                         />
                     }
@@ -37,7 +37,7 @@ export function AppRouter() {
                     path="/login"
                     element={
                         isAuthenticated ? (
-                            <Navigate to="//admin/settings/dashboard" replace />
+                            <Navigate to="/admin/settings/dashboard" replace />
                         ) : (
                             <LoginPage />
                         )
@@ -48,7 +48,7 @@ export function AppRouter() {
                 <Route element={<ProtectedRoute />}>
                     <Route element={<MainLayout />}>
                         <Route
-                            path="//admin/settings/dashboard"
+                            path="/admin/settings/dashboard"
                             element={<Dashboard />}
                         />
 
