@@ -6,6 +6,7 @@ import {
     labelClass,
     textareaClass,
 } from "../../shared/stylings/ClassesCss";
+import { Button } from "../../../../shared/components/Button/Button";
 
 const emptyFaq = {
     title: {
@@ -42,6 +43,7 @@ export default function FAQ() {
                                     الأسئلة والأجوبة
                                 </h3>
 
+
                                 <button
                                     type="button"
                                     onClick={() => push(emptyFaq)}
@@ -61,14 +63,15 @@ export default function FAQ() {
                                             <h4 className="font-semibold text-neutral-700">
                                                 السؤال {index + 1}
                                             </h4>
-
-                                            <button
-                                                type="button"
-                                                onClick={() => remove(index)}
-                                                className="rounded-full bg-red-50 px-4 py-2 text-sm text-red-600 transition hover:bg-red-100"
-                                            >
-                                                حذف السؤال
-                                            </button>
+                                            {questions.length > 1 && (
+                                                <Button
+                                                    type="button"
+                                                    onClick={() => remove(index)}
+                                                    className="rounded-full bg-red-50 px-4 py-2 text-sm text-red-600 transition hover:bg-red-100"
+                                                >
+                                                    حذف السؤال
+                                                </Button>
+                                            )}
                                         </div>
 
                                         <BilingualField

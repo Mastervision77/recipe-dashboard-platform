@@ -80,7 +80,7 @@ export default function Team() {
 
                     return (
                         <div className="space-y-6">
-                            {cards.map((card: any, index: number) => (
+                            {cards.map((index: number) => (
                                 <div
                                     key={index}
                                     className="space-y-5 rounded-2xl border border-neutral-200 p-5"

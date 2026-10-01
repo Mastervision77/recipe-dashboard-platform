@@ -41,5 +41,10 @@ export function useUpdateLanding(id: number) {
             queryClient.setQueryData(landingKey(id), data);
             toast.success("تم تحديث المحتوي بنجاح")
         },
+         onError: (error: any) => {
+            toast.error(
+                error?.response?.data?.data?.message || "حدث خطأ أثناء تحديث المحتوى"
+            );
+        },
     });
 }

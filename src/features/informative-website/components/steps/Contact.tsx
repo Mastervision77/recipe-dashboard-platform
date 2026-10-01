@@ -63,14 +63,15 @@ export default function Contact() {
                                         placeholder="البريد الإلكتروني"
                                         className={`${inputClass} text-left`}
                                     />
-
-                                    <button
-                                        type="button"
-                                        onClick={() => remove(index)}
-                                        className="rounded-full p-3 text-red-500 hover:bg-red-50"
-                                    >
-                                        <FiTrash2 />
-                                    </button>
+                                    {values.contact?.email.length > 1 && (
+                                        <button
+                                            type="button"
+                                            onClick={() => remove(index)}
+                                            className="rounded-full p-3 text-red-500 hover:bg-red-50"
+                                        >
+                                            <FiTrash2 />
+                                        </button>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -111,13 +112,15 @@ export default function Contact() {
 
                                     />
 
-                                    <button
-                                        type="button"
-                                        onClick={() => remove(index)}
-                                        className="rounded-full p-3 text-red-500 hover:bg-red-50"
-                                    >
-                                        <FiTrash2 />
-                                    </button>
+                                    {values.contact?.phone.length > 1 && (
+                                        <button
+                                            type="button"
+                                            onClick={() => remove(index)}
+                                            className="rounded-full p-3 text-red-500 hover:bg-red-50"
+                                        >
+                                            <FiTrash2 />
+                                        </button>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -157,16 +160,19 @@ export default function Contact() {
                                     key={index}
                                     className="rounded-2xl border border-neutral-200 p-5"
                                 >
-                                    <div className="mb-4 flex justify-end">
-                                        <button
-                                            type="button"
-                                            onClick={() => remove(index)}
-                                            className="flex items-center gap-2 text-sm text-red-500"
-                                        >
-                                            <FiTrash2 />
-                                            حذف العنوان
-                                        </button>
-                                    </div>
+
+                                    {values.contact?.address.length > 1 && (
+                                        <div className="mb-4 flex justify-end">
+                                            <button
+                                                type="button"
+                                                onClick={() => remove(index)}
+                                                className="flex items-center gap-2 text-sm text-red-500"
+                                            >
+                                                <FiTrash2 />
+                                                حذف العنوان
+                                            </button>
+                                        </div>
+                                    )}
 
                                     <div className="grid gap-4 md:grid-cols-2">
                                         <Field

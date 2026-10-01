@@ -30,6 +30,13 @@ export default function RoleSelect({ name }: Props) {
         <Select
             options={options}
             value={selectedOption}
+            menuPortalTarget={document.body}
+    styles={{
+        menuPortal: (base) => ({
+            ...base,
+            zIndex: 9999,
+        }),
+    }}
             onChange={(option) =>
                 helpers.setValue(option?.value ?? 0)
             }

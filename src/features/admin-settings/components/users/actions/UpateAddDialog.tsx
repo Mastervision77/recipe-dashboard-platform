@@ -82,7 +82,7 @@ export default function UpateAddDialog({
             onSubmit={handleSubmit}
         >
             {() => (
-                <Form className="w-full">
+                <Form className="w-full ">
 
                     {/* Header */}
                     <div className="bg-[#0d5c34] p-5 text-white">
