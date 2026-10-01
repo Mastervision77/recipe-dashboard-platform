@@ -1,10 +1,5 @@
-import { FieldArray } from "formik";
-import {
-    FaFacebookF,
-    FaInstagram,
-    FaTiktok,
-    FaTwitter,
-} from "react-icons/fa";
+import { Field, FieldArray } from "formik";
+import { FaFacebookF, FaInstagram, FaTiktok, FaTwitter } from "react-icons/fa";
 
 import { BilingualField } from "../../shared/BilingualField/BilingualField";
 import { ImageUploadField } from "../../shared/ImageUploadField/ImageUploadField";
@@ -46,11 +41,22 @@ const emptyTeamMember = {
         ar: "",
         en: "",
     },
-    socailmedia: {
+    socailmedia: socialMediaOptions.map((social) => ({
         url: "",
-        icon: "facebook",
-    },
+        icon: social.value,
+    })),
     img: "",
+};
+
+const normalizeSocialMedia = (socialmedia = []) => {
+    return socialMediaOptions.map((social) => {
+        const existing = socialmedia.find((item) => item.icon === social.value);
+
+        return {
+            url: existing?.url ?? "",
+            icon: social.value,
+        };
+    });
 };
 
 export default function Team() {
@@ -125,7 +131,6 @@ export default function Team() {
                                         as="textarea"
                                     />
 
-
                                     {/* Social Media */}
                                     <div className="space-y-3">
                                         <label className={labelClass}>
@@ -148,18 +153,9 @@ export default function Team() {
                                                         </div>
 
                                                         {/* URL */}
-                                                        <input
+                                                        <Field
                                                             type="url"
                                                             name={`our_team.cards.${index}.socailmedia[${socialIndex}].url`}
-                                                            value={
-                                                                card.socailmedia?.[socialIndex]?.url ?? ""
-                                                            }
-                                                            onChange={(e) => {
-                                                                form.setFieldValue(
-                                                                    `our_team.cards.${index}.socailmedia[${socialIndex}].url`,
-                                                                    e.target.value
-                                                                );
-                                                            }}
                                                             className={`${inputClass} flex-1`}
                                                             placeholder={`رابط ${social.label}`}
                                                         />
