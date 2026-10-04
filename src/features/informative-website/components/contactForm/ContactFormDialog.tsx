@@ -15,16 +15,17 @@ export default function ContactFormDialog({
 
     return (
 
-<>
-                {/* Header */}
-                <div className="bg-[#0d5c34] p-5 text-white">
-                    <h2 className="text-lg font-bold">
-                        بيانات رسالة التواصل
-                    </h2>
-                </div>
+        <>
+            {/* Header */}
+            <div className="bg-[#0d5c34] p-5 text-white">
+                <h2 className="text-lg font-bold">
+                    بيانات رسالة التواصل
+                </h2>
+            </div>
 
-                {/* Content */}
-                <div className="space-y-5 p-6">
+            {/* Content */}
+            <div className="max-h-[70vh] overflow-y-auto overflow-x-hidden p-6">
+                <div className="space-y-5">
 
                     <div className="grid gap-4 sm:grid-cols-2">
                         <InfoItem
@@ -59,18 +60,18 @@ export default function ContactFormDialog({
                     />
 
                 </div>
-
-                {/* Footer */}
-                <div className="flex justify-end border-t border-gray-100 p-4">
-                    <Button
-                        type="button"
-                        onClick={onClose}
-                        className="rounded-full border cursor-pointer border-neutral-300 px-6 py-2 text-sm hover:bg-gray-50"
-                    >
-                        إغلاق
-                    </Button>
-                </div>
-                </>
+            </div>
+            {/* Footer */}
+            <div className="flex justify-end border-t border-gray-100 p-4">
+                <Button
+                    type="button"
+                    onClick={onClose}
+                    className="rounded-full border cursor-pointer border-neutral-300 px-6 py-2 text-sm hover:bg-gray-50"
+                >
+                    إغلاق
+                </Button>
+            </div>
+        </>
     );
 }
 

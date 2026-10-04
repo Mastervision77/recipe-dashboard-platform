@@ -19,7 +19,7 @@ export function ModalTemplate({
         <Transition.Root show={isOpen} as={Fragment}>
             <Dialog
                 as="div"
-                className="relative z-[100]"
+                className="relative z-[100] "
                 onClose={onClose}
             >
                 {/* Overlay */}
@@ -47,7 +47,7 @@ export function ModalTemplate({
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-lg transform overflow-hidden rounded-xl bg-white  text-right align-middle shadow-xl transition-all">
+                            <Dialog.Panel className="transform max-w-3xl w-full overflow-hidden rounded-xl bg-white  text-right align-middle shadow-xl transition-all">
                                 {title && (
                                     <Dialog.Title
                                         as="h3"

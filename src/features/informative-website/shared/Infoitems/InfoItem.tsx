@@ -11,9 +11,9 @@ export default function InfoItem({
                 {label}
             </p>
 
-            <div className="rounded-lg whitespace-pre-wrap bg-gray-50 px-4 py-3 text-sm text-gray-800">
-                {value || "—"}
-            </div>
+            <div className="break-all whitespace-pre-wrap rounded-lg bg-gray-50 px-4 py-3 text-sm text-gray-800">
+    {value || "—"}
+</div>
         </div>
     );
 }

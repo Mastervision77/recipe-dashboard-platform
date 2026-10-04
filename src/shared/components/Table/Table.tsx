@@ -23,7 +23,7 @@ export function Table<T extends object>({
     });
 
     return (
-        <div className="w-full rounded-xl border overflow-x-auto hide-scrollbar border-gray-100 py-10 bg-white shadow-sm">
+        <div className="w-full rounded-xl border  overflow-x-auto hide-scrollbar border-gray-100 py-10 bg-white shadow-sm">
         <div className="overflow-visible">
             <table className="w-full border-collapse text-right text-xs md:text-sm">
                 <thead>
@@ -57,7 +57,7 @@ export function Table<T extends object>({
                                     key={cell.id}
                                     className="px-5 py-3.5 text-sm font-medium text-gray-700"
                                 >
-                                    <table.FlexRender cell={cell} />
+                                    <table.FlexRender cell={cell}  />
                                 </td>
                             ))}
                         </tr>
