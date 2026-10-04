@@ -104,11 +104,15 @@ export default function Contact() {
                             {values.contact?.phone?.map((_: any, index: number) => (
                                 <div key={index} className="flex items-center gap-3">
                                     <Field
-                                        type="text"
+                                        type="tel"
+                                        inputMode="numeric"
                                         name={`contact.phone[${index}].phone`}
                                         placeholder="رقم الهاتف"
                                         className={`${inputClass} text-left`}
                                         style={{ direction: "ltr" }}
+                                        onInput={(e: React.FormEvent<HTMLInputElement>) => {
+    e.currentTarget.value = e.currentTarget.value.replace(/[^\d+]/g, "");
+}}
 
                                     />
 
