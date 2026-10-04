@@ -59,6 +59,7 @@ export interface CatalogSection {
     title: LocalizedText; 
     subtitle: LocalizedText; 
     img: string | File; 
+    pdf:string | File;
 }
 
 

@@ -71,21 +71,21 @@ export function buildLandingFormData(values: LandingData): FormData {
   values.our_team?.cards?.forEach((card, i) => {
     appendBilingual(fd, `ourteamsectioncard[${i}][title]`, card.title);
     appendBilingual(fd, `ourteamsectioncard[${i}][subtitle]`, card.subtitle);
-   card.socailmedia?.forEach((social, socialIndex) => {
-    if (social.url) {
+    card.socailmedia?.forEach((social, socialIndex) => {
+      if (social.url) {
         fd.append(
-            `ourteamsectioncard[${i}][socailmedia][${socialIndex}][url]`,
-            social.url
+          `ourteamsectioncard[${i}][socailmedia][${socialIndex}][url]`,
+          social.url
         );
-    }
+      }
 
-    if (social.icon) {
+      if (social.icon) {
         fd.append(
-            `ourteamsectioncard[${i}][socailmedia][${socialIndex}][icon]`,
-            social.icon
+          `ourteamsectioncard[${i}][socailmedia][${socialIndex}][icon]`,
+          social.icon
         );
-    }
-});
+      }
+    });
     appendImg(fd, `ourteamsectioncard[${i}][img]`, card.img);
   });
 
@@ -109,6 +109,10 @@ export function buildLandingFormData(values: LandingData): FormData {
     if (item.ar) fd.append(`contactsectionaddress[${i}][ar]`, item.ar);
     if (item.en) fd.append(`contactsectionaddress[${i}][en]`, item.en);
   });
+
+  if (values.catalog?.pdf instanceof File) {
+    fd.append("catalog_pdf", values.catalog.pdf);
+  }
 
   // Method spoofing لإن الـ endpoint فعليًا PUT
   fd.append("_method", "PUT");
