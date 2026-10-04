@@ -32,22 +32,16 @@ const socialMediaOptions = [
     },
 ] as const;
 
-const emptyTeamMember = {
-    title: {
-        ar: "",
-        en: "",
-    },
-    subtitle: {
-        ar: "",
-        en: "",
-    },
+// Returns a fresh object every time so new members never share references
+const createEmptyTeamMember = () => ({
+    title: { ar: "", en: "" },
+    subtitle: { ar: "", en: "" },
     socailmedia: socialMediaOptions.map((social) => ({
         url: "",
         icon: social.value,
     })),
     img: "",
-};
-
+});
 
 export default function Team() {
     return (
@@ -76,11 +70,11 @@ export default function Team() {
 
             <FieldArray name="our_team.cards">
                 {({ push, remove, form }) => {
-                    const cards = form.values.our_team?.cards ?? [];
+                    const cards: unknown[] = form.values.our_team?.cards ?? [];
 
                     return (
                         <div className="space-y-6">
-                            {cards.map((index: number) => (
+                            {cards.map((_card, index) => (
                                 <div
                                     key={index}
                                     className="space-y-5 rounded-2xl border border-neutral-200 p-5"
@@ -159,7 +153,7 @@ export default function Team() {
 
                             <button
                                 type="button"
-                                onClick={() => push(emptyTeamMember)}
+                                onClick={() => push(createEmptyTeamMember())}
                                 className="rounded-full bg-[#0d5c34] px-6 py-3 text-white"
                             >
                                 + إضافة عضو جديد
