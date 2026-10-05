@@ -1,5 +1,5 @@
 import { Field, FieldArray } from "formik";
-import { FaFacebookF, FaInstagram, FaTiktok, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTiktok, FaTwitter } from "react-icons/fa";
 
 import { BilingualField } from "../../shared/BilingualField/BilingualField";
 import { ImageUploadField } from "../../shared/ImageUploadField/ImageUploadField";
@@ -29,6 +29,11 @@ const socialMediaOptions = [
         value: "e-font-icon-svg e-fab-twitter",
         label: "Twitter",
         icon: FaTwitter,
+    },
+    {
+        value: "e-font-icon-svg e-fab-linkedin-in",
+        label: "LinkedIn",
+        icon: FaLinkedinIn,
     },
 ] as const;
 
