@@ -113,7 +113,21 @@ export const servicesSchema = Yup.object({ title: Yup.object({ ar: Yup.string() 
 
 // export const catalogSchema = Yup.object({ title: Yup.object({ ar: Yup.string() .required("عنوان الكتالوج بالعربية مطلوب"), en: Yup.string() .required("عنوان الكتالوج بالإنجليزية مطلوب"), }), subtitle: Yup.object({ ar: Yup.string() .required("وصف الكتالوج بالعربية مطلوب"), en: Yup.string() .required("وصف الكتالوج بالإنجليزية مطلوب"), }), img: Yup.mixed<File | string>() .required("صورة الكتالوج مطلوبة"), });
 
+const faqItemSchema = Yup.object({
+    title: requiredLocalizedText("السؤال"),
+    subtitle: requiredLocalizedText("الإجابة"),
+});
 
+export const faqSchema = Yup.object({
+    faq: Yup.object({
+        description: requiredLocalizedText("الوصف التعريفي"),
+
+        faq: Yup.array()
+            .of(faqItemSchema)
+            .min(1, "يجب إضافة سؤال واحد على الأقل")
+            .required("الأسئلة مطلوبة"),
+    }),
+});
 
 
 // Combine into a full schema for final submit, and an array
@@ -127,6 +141,6 @@ export const stepSchemas = [
   // servicesSchema,
   Yup.object(),
   teamSchema,
-  Yup.object(),
+  faqSchema, 
   Yup.object(),
 ];
