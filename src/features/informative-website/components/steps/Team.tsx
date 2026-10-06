@@ -87,6 +87,7 @@ export default function Team() {
                                     <div className="flex items-center justify-between">
                                         <h3 className="font-semibold text-[#0d5c34]">
                                             عضو الفريق {index + 1}
+                                    
                                         </h3>
 
                                         {cards.length > 1 && (

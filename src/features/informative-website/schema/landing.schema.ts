@@ -36,24 +36,28 @@ export const aboutSchema = Yup.object({
 });
 
 
+const requiredLocalizedText = (label: string) =>
+    Yup.object({
+        ar: Yup.string().trim().required(`${label} بالعربية مطلوب`),
+        en: Yup.string().trim().required(`${label} بالإنجليزية مطلوب`),
+    });
+
 const teamMemberSchema = Yup.object({
-    title: localizedText,
+    title: requiredLocalizedText("اسم العضو"),
 
-    subtitle: localizedText,
+    subtitle: requiredLocalizedText("المنصب والوصف"),
 
-    img: Yup.string()
-        .trim()
-        .required("صورة العضو مطلوبة"),
+    img: Yup.string().trim().required("صورة العضو مطلوبة"),
 
 });
 
 export const teamSchema = Yup.object({
     our_team: Yup.object({
-        section: localizedText,
+        section: requiredLocalizedText("اسم السكشن"),
 
-        title: localizedText,
+        title: requiredLocalizedText("عنوان السكشن"),
 
-        subtitle: localizedText,
+        subtitle: requiredLocalizedText("الوصف التعريفي"),
 
         cards: Yup.array()
             .of(teamMemberSchema)
@@ -61,6 +65,8 @@ export const teamSchema = Yup.object({
             .required("أعضاء الفريق مطلوبة"),
     }),
 });
+
+
 
 export const valuesSchema = Yup.object({
     values: Yup.object({
@@ -112,4 +118,15 @@ export const servicesSchema = Yup.object({ title: Yup.object({ ar: Yup.string() 
 
 // Combine into a full schema for final submit, and an array
 // (one entry per step) so "Next" can validate just that slice.
-export const stepSchemas = [heroSchema , aboutSchema , valuesSchema , whyChooseUsSchema , teamSchema , servicesSchema /* , catalogSchema, servicesSchema */];
+export const stepSchemas = [
+
+   heroSchema,
+  aboutSchema,
+  valuesSchema,
+  whyChooseUsSchema,
+  // servicesSchema,
+  Yup.object(),
+  teamSchema,
+  Yup.object(),
+  Yup.object(),
+];
