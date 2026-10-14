@@ -6,7 +6,7 @@ export default function App() {
     return (
         <AppProviders>
             <AppRouter />
-             <Toaster
+            <Toaster
                 position="top-right"
                 richColors
                 closeButton

@@ -76,21 +76,22 @@ export const adminModules: AdminModule[] = [
     key: "ecommerce",
     title: "المتجر",
     icon: LuShoppingBag,
-    basePath: "/admin/ecommerce",
+    basePath: "/admin/shop",
     sections: [
       {
         items: [
-          { title: "نظرة عامة", href: "/admin/ecommerce", icon: LuLayoutDashboard, exact: true },
-          {
-            title: "الكتالوج",
-            href: "/admin/ecommerce/catalog",
-            icon: LuPackage,
-            children: [
-              { title: "المنتجات", href: "/admin/ecommerce/catalog/products" },
-              { title: "التصنيفات", href: "/admin/ecommerce/catalog/categories" },
-            ],
-          },
-          { title: "الطلبات", href: "/admin/ecommerce/orders", icon: LuClipboardList },
+          { title: "نظرة عامة", href: "/admin/shop", icon: LuLayoutDashboard, exact: true },
+          { title: "محتوي من نحن", href: "/admin/shop/about-page", icon: LuLayoutDashboard },
+          // {
+          //   title: "الكتالوج",
+          //   href: "/admin/ecommerce/catalog",
+          //   icon: LuPackage,
+          //   children: [
+          //     { title: "المنتجات", href: "/admin/ecommerce/catalog/products" },
+          //     { title: "التصنيفات", href: "/admin/ecommerce/catalog/categories" },
+          //   ],
+          // },
+          // { title: "الطلبات", href: "/admin/ecommerce/orders", icon: LuClipboardList },
         ],
       },
     ],
