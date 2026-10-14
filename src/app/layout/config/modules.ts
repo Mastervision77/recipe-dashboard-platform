@@ -1,6 +1,6 @@
 import { CiGlobe, CiSettings } from "react-icons/ci";
 import type { IconType } from "react-icons/lib";
-import {  LuFileText, LuLayoutDashboard, LuShieldCheck  } from "react-icons/lu";
+import {  LuClipboardList, LuFileText, LuLayoutDashboard, LuPackage, LuShieldCheck, LuShoppingBag  } from "react-icons/lu";
 import { PiUsers } from "react-icons/pi";
 
 
@@ -72,29 +72,29 @@ export const adminModules: AdminModule[] = [
       },
     ],
   },
-  // {
-  //   key: "ecommerce",
-  //   title: "المتجر",
-  //   icon: LuShoppingBag,
-  //   basePath: "/admin/ecommerce",
-  //   sections: [
-  //     {
-  //       items: [
-  //         { title: "نظرة عامة", href: "/admin/ecommerce", icon: LuLayoutDashboard, exact: true },
-  //         {
-  //           title: "الكتالوج",
-  //           href: "/admin/ecommerce/catalog",
-  //           icon: LuPackage,
-  //           children: [
-  //             { title: "المنتجات", href: "/admin/ecommerce/catalog/products" },
-  //             { title: "التصنيفات", href: "/admin/ecommerce/catalog/categories" },
-  //           ],
-  //         },
-  //         { title: "الطلبات", href: "/admin/ecommerce/orders", icon: LuClipboardList },
-  //       ],
-  //     },
-  //   ],
-  // },
+  {
+    key: "ecommerce",
+    title: "المتجر",
+    icon: LuShoppingBag,
+    basePath: "/admin/ecommerce",
+    sections: [
+      {
+        items: [
+          { title: "نظرة عامة", href: "/admin/ecommerce", icon: LuLayoutDashboard, exact: true },
+          {
+            title: "الكتالوج",
+            href: "/admin/ecommerce/catalog",
+            icon: LuPackage,
+            children: [
+              { title: "المنتجات", href: "/admin/ecommerce/catalog/products" },
+              { title: "التصنيفات", href: "/admin/ecommerce/catalog/categories" },
+            ],
+          },
+          { title: "الطلبات", href: "/admin/ecommerce/orders", icon: LuClipboardList },
+        ],
+      },
+    ],
+  },
   // {
   //   key: "recipes",
   //   title: "منصة الوصفات",

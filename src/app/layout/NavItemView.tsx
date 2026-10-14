@@ -18,7 +18,7 @@ export function NavItemView({ item, onNavigate }: Props) {
 
   const active = isPathActive(pathname, item.href, item.exact);
 
-  const [open, setOpen] = useState(active);
+  const [open, setOpen] = useState(false);
 
   const Icon = item.icon;
 
