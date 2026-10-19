@@ -6,6 +6,8 @@ export const SurveyKey = ["survey"] as const;
 
 async function fetchSurvey(page: number): Promise<SurveyResponse> {
   const { data } = await api.get("/surveys", { params: { page } });
+
+  console.log(data)
   return (data);
 }
 

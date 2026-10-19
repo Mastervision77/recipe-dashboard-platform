@@ -13,6 +13,15 @@ export const api = axios.create({
     },
 });
 
+api.interceptors.request.use((config) => {
+    console.log("Request URL:", config.baseURL, config.url);
+    console.log("Authorization exists:", !!config.headers.Authorization);
+    console.log("Accept-Language:", config.headers["Accept-Language"]);
+
+    return config;
+});
+
+
 api.interceptors.request.use(
     (config) => {
         const token = getToken();
