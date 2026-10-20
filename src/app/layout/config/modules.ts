@@ -1,6 +1,6 @@
 import { CiGlobe, CiSettings } from "react-icons/ci";
 import type { IconType } from "react-icons/lib";
-import {  LuClipboardList, LuFileText, LuLayoutDashboard, LuPackage, LuShieldCheck, LuShoppingBag  } from "react-icons/lu";
+import {   LuFileText, LuLayoutDashboard,  LuShieldCheck, LuShoppingBag  } from "react-icons/lu";
 import { PiUsers } from "react-icons/pi";
 
 
