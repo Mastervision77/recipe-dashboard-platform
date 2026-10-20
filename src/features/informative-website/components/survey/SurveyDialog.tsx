@@ -1,6 +1,4 @@
-
 import { Button } from "../../../../shared/components/Button/Button";
-import { surveyQuestions } from "../../data/survey";
 import InfoItem from "../../shared/Infoitems/InfoItem";
 import type { Survey } from "../../types/survey.types";
 
@@ -9,88 +7,79 @@ type Props = {
     onClose: () => void;
 };
 
-
-
-export default function SurveyDialog({
-    survey,
-    onClose,
-}: Props) {
+export default function SurveyDialog({ survey, onClose }: Props) {
     if (!survey) return null;
+
 
     return (
         <>
             {/* Header */}
             <div className="bg-[#0d5c34] p-5 text-white">
-                <h2 className="text-lg font-bold">
-                    بيانات الاستبيان
-                </h2>
+                <h2 className="text-lg font-bold">بيانات الاستبيان</h2>
             </div>
 
             {/* Content */}
-            <div className="space-y-5 p-6">
-
-                {/* Template */}
-                <InfoItem
-                    label="نوع الاستبيان"
-                    value={survey.template?.title}
-                />
-
-                {/* Answers */}
-                <div className="space-y-4">
-                    {surveyQuestions.map((item, index) => {
-                        const answer = survey.answers?.[index];
-
-                        if (!answer) return null;
-
-                        const answerText =
-                            item.options[
-                                answer as keyof typeof item.options
-                            ];
-
-                        return (
-                            <div
-                                key={index}
-                                className="rounded-lg border border-gray-200 p-4"
-                            >
-                                <p className="mb-2 text-sm font-semibold text-gray-700">
-                                    {index + 1}. {item.question}
-                                </p>
-
-                                <div className="rounded-md bg-green-50 p-3">
-                                    <p className="text-sm text-[#0d5c34]">
-                                        {answerText}
-                                    </p>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-
-                {/* Breakdown */}
-                <div>
-                    <h3 className="mb-3 text-sm font-semibold text-gray-700">
-                        ملخص الإجابات
+            <div className="max-h-[70vh] space-y-6 overflow-y-auto p-6">
+                {/* بيانات المستجيب */}
+                <section className="space-y-4">
+                    <h3 className="text-sm font-semibold text-gray-700">
+                        بيانات المستجيب
                     </h3>
 
-                    <div className="grid grid-cols-4 gap-3">
-                        {Object.entries(survey.breakdown ?? {}).map(
-                            ([option, count]) => (
-                                <div
-                                    key={option}
-                                    className="rounded-lg border border-gray-200 p-3 text-center"
-                                >
-                                    <p className="text-lg font-bold text-[#0d5c34]">
-                                        {option}
-                                    </p>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <InfoItem label="الاسم" value={survey.name} />
+                        <InfoItem label="البريد الإلكتروني" value={survey.email} />
+                        <InfoItem
+                            dir="ltr"
+                            label="رقم الهاتف"
+                            value={`${survey.country_code} ${survey.phone_number}`}
+                        />
+                        <InfoItem label="نوع الاستبيان" value={survey.template?.title} />
 
-                                    <p className="text-sm text-gray-500">
-                                        {count} إجابة
-                                    </p>
-                                </div>
-                            )
+
+                    </div>
+                </section>
+
+                {/* الإجابات */}
+                <section className="space-y-4">
+                    <h3 className="text-sm font-semibold text-gray-700">الإجابات</h3>
+
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <InfoItem label="الوظيفة" value={survey.job_role?.label} />
+                        <InfoItem label="النشاط" value={survey.activity?.label} />
+                        <InfoItem
+                            label="عدد الفروع"
+                            value={survey.branches_count?.label}
+                        />
+                        <InfoItem label="الموقع" value={survey.location?.label} />
+                    </div>
+
+                    {/* أكبر التحديات (multi) */}
+                    <div className="rounded-lg border border-gray-200 p-4">
+                        <p className="mb-2 text-sm font-semibold text-gray-700">
+                            أكبر التحديات
+                        </p>
+
+                        {survey.biggest_challenge?.length ? (
+                            <div className="flex flex-wrap gap-2">
+                                {survey.biggest_challenge.map((item) => (
+                                    <span
+                                        key={item.value}
+                                        className="rounded-full bg-green-50 px-3 py-1 text-sm text-[#0d5c34]"
+                                    >
+                                        {item.label}
+                                    </span>
+                                ))}
+                            </div>
+                        ) : (
+                            <p className="text-sm text-gray-400">—</p>
                         )}
                     </div>
-                </div>
+                </section>
+
+
+
+
             </div>
 
             {/* Footer */}

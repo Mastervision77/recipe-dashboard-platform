@@ -5,20 +5,12 @@ export const UNAUTHORIZED_EVENT = "auth:unauthorized";
 
 export const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
-    // يخلي المتصفح يبعت/يستقبل الكوكيز لو الباك بيسيت كوكي httpOnly
     withCredentials: true,
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        "Accept-Language": "ar"
     },
-});
-
-api.interceptors.request.use((config) => {
-    console.log("Request URL:", config.baseURL, config.url);
-    console.log("Authorization exists:", !!config.headers.Authorization);
-    console.log("Accept-Language:", config.headers["Accept-Language"]);
-
-    return config;
 });
 
 

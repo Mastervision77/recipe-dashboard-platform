@@ -5,7 +5,7 @@ import type { AppTableFeatures } from "../../../../shared/components/Table/table
 import type { Survey } from "../../types/survey.types";
 
 
-const columnHelper = createColumnHelper<AppTableFeatures , Survey>();
+const columnHelper = createColumnHelper<AppTableFeatures, Survey>();
 
 export const generateColumns = ({
     onView,
@@ -13,16 +13,16 @@ export const generateColumns = ({
     onView?: (survey: Survey) => void;
 }) => {
     return [
-        columnHelper.accessor("id", {
-            header: "id",
-            cell: (info) => info.getValue() || "—",
-        }),
-        columnHelper.accessor("template.title", {
-            header: "عنوان",
-            cell: (info) => info.getValue() || "—",
+        columnHelper.accessor("job_role", {
+            header: "المسمى الوظيفي",
+            cell: (info) => info.getValue()?.label || "—",
         }),
 
-       
+        columnHelper.accessor("activity", {
+            header: "نوع النشاط",
+            cell: (info) => info.getValue()?.label || "—",
+        }),
+
         columnHelper.display({
             id: "actions",
             header: "الاجراءات",
