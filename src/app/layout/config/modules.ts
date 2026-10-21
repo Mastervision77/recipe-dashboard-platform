@@ -2,6 +2,7 @@ import { CiGlobe, CiSettings } from "react-icons/ci";
 import type { IconType } from "react-icons/lib";
 import {   LuFileText, LuLayoutDashboard,  LuShieldCheck, LuShoppingBag  } from "react-icons/lu";
 import { PiUsers } from "react-icons/pi";
+import { GrArticle } from "react-icons/gr";
 
 
 export type NavItem = {
@@ -82,6 +83,7 @@ export const adminModules: AdminModule[] = [
         items: [
           { title: "نظرة عامة", href: "/admin/shop", icon: LuLayoutDashboard, exact: true },
           { title: "محتوي من نحن", href: "/admin/shop/about-page", icon: LuLayoutDashboard },
+          { title: "المدونات", href: "/admin/shop/blog-page", icon: GrArticle },
           // {
           //   title: "الكتالوج",
           //   href: "/admin/ecommerce/catalog",
