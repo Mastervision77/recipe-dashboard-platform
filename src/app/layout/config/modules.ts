@@ -1,6 +1,6 @@
 import { CiGlobe, CiSettings } from "react-icons/ci";
 import type { IconType } from "react-icons/lib";
-import {   LuFileText, LuLayoutDashboard,  LuShieldCheck, LuShoppingBag  } from "react-icons/lu";
+import { LuFileText, LuLayoutDashboard, LuShieldCheck, LuShoppingBag, LuTags } from "react-icons/lu";
 import { PiUsers } from "react-icons/pi";
 import { GrArticle } from "react-icons/gr";
 
@@ -64,9 +64,9 @@ export const adminModules: AdminModule[] = [
     sections: [
       {
         items: [
-          { title: "الصفحات", href: "/admin/website", icon: LuFileText , exact: true  },
+          { title: "الصفحات", href: "/admin/website", icon: LuFileText, exact: true },
           { title: "استمارة التواصل", href: "/admin/website/contact-form", icon: LuFileText },
-          { title:" الاستبيان التشخيصي للمطبخ", href: "/admin/website/survey", icon: LuFileText },
+          { title: " الاستبيان التشخيصي للمطبخ", href: "/admin/website/survey", icon: LuFileText },
           // { title: "المدونة", href: "/admin/website/blog", icon: LuNewspaper },
           // { title: "رسائل التواصل", href: "/admin/website/messages", icon: LuMessageSquare },
         ],
@@ -81,19 +81,32 @@ export const adminModules: AdminModule[] = [
     sections: [
       {
         items: [
-          { title: "نظرة عامة", href: "/admin/shop", icon: LuLayoutDashboard, exact: true },
-          { title: "محتوي من نحن", href: "/admin/shop/about-page", icon: LuLayoutDashboard },
-          { title: "المدونات", href: "/admin/shop/blog-page", icon: GrArticle },
-          // {
-          //   title: "الكتالوج",
-          //   href: "/admin/ecommerce/catalog",
-          //   icon: LuPackage,
-          //   children: [
-          //     { title: "المنتجات", href: "/admin/ecommerce/catalog/products" },
-          //     { title: "التصنيفات", href: "/admin/ecommerce/catalog/categories" },
-          //   ],
-          // },
-          // { title: "الطلبات", href: "/admin/ecommerce/orders", icon: LuClipboardList },
+          { title: "نظرة عامة", href: "/admin/shop/dashboard", icon: LuLayoutDashboard, exact: true },
+          {
+            title: "ادارة المحتوي",
+            href: "/admin/shop",
+            icon: CiSettings,
+            children: [
+              { title: "محتوي من نحن", href: "/admin/shop/about-page", icon: LuLayoutDashboard },
+              {
+              title: "المدونات",
+              href: "/admin/shop",
+              icon: GrArticle,
+              children: [
+                {
+                  title: "كل المدونات",
+                  href: "/admin/shop/blog-page",
+                  icon: GrArticle,
+                },
+                {
+                  title: "تصنيفات المدونات",
+                  href: "/admin/shop/blog-categories",
+                  icon: LuTags,
+                },
+              ],
+            },
+            ],
+          },
         ],
       },
     ],

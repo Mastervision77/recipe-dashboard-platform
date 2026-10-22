@@ -10,6 +10,7 @@ import { useCategoriesQuery, useDeleteCategory } from "../../api/categories.api"
 import type { CategoryApi } from "../../types/categories.types";
 import { generateColumns } from "./categories.columns";
 import CategoryFormDialog from "./CategoryFormDialog";
+import { LuPlus } from "react-icons/lu";
 
 export default function CategoriesTable() {
   const [page, setPage] = useState(1);
@@ -77,19 +78,30 @@ export default function CategoriesTable() {
         <Button
           type="button"
           onClick={openAdd}
-          className="cursor-pointer rounded-full bg-[#0d5c34] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#094a29]"
+          className="flex cursor-pointer items-center gap-2 rounded-full bg-secondary-gradient px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
         >
-          + إضافة تصنيف
+          <LuPlus size={16} />
         </Button>
       </div>
 
+
       {isLoading ? (
         <Loading />
+      ) : rows.length === 0 ? (
+        <div className="flex min-h-[300px] flex-col items-center justify-center px-4 text-center">
+          <h2 className="text-xl font-semibold text-gray-800">
+            لا توجد تصنيفات للمدونات
+          </h2>
+          <p className="mt-2 text-sm text-gray-500">
+            لا يوجد محتوى متاح للعرض حاليًا.
+          </p>
+        </div>
       ) : (
         <div className={isFetching ? "opacity-60 transition-opacity" : ""}>
           <Table data={rows} columns={columns} />
         </div>
       )}
+
 
       <Paginate
         page={page}

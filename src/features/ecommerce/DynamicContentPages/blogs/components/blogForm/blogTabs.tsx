@@ -4,22 +4,16 @@ import type { BlogFormValues } from "../../types/blogs.types";
 import {
   basicSchema,
   contentSchema,
-  imagesSchema,
-  productsSchema,
-  quoteSchema,
+  mediaSchema,
 } from "../../schema/blogs.schema";
 import {
   buildBasicFormData,
   buildContentFormData,
-  buildImagesFormData,
-  buildProductsFormData,
-  buildQuoteFormData,
+  buildMediaFormData,
 } from "../../utils/blogs.utils";
 import { BasicTab } from "./BasicTab";
 import { ContentTab } from "./ContentTab";
-import { QuoteTab } from "./QuoteTab";
-import { ImagesTab } from "./ImagesTab";
-import { ProductsTab } from "./ProductsTab";
+import { MediaTab } from "./MediaTab";
 
 export type BlogTab = {
   id: string;
@@ -32,11 +26,12 @@ export type BlogTab = {
   Component: ComponentType;
 };
 
-const tab = (
-  t: Omit<BlogTab, "fields">,
-): BlogTab => ({ ...t, fields: Object.keys(t.schema.fields) });
+const tab = (t: Omit<BlogTab, "fields">): BlogTab => ({
+  ...t,
+  fields: Object.keys(t.schema.fields),
+});
 
-// كل tab = API call مستقل في صفحة التعديل (نفس endpoint التحديث بـ keys الـ tab)
+// كل tab = حفظ مستقل في صفحة التعديل (نفس endpoint التحديث بـ keys الـ tab)
 export const blogTabs: BlogTab[] = [
   tab({
     id: "basic",
@@ -55,27 +50,11 @@ export const blogTabs: BlogTab[] = [
     Component: ContentTab,
   }),
   tab({
-    id: "quote",
-    label: "الاقتباس",
-    savedMessage: "تم حفظ الاقتباس بنجاح",
-    schema: quoteSchema,
-    build: (v) => buildQuoteFormData(v),
-    Component: QuoteTab,
-  }),
-  tab({
-    id: "images",
-    label: "الصور",
-    savedMessage: "تم حفظ الصور بنجاح",
-    schema: imagesSchema,
-    build: (v) => buildImagesFormData(v),
-    Component: ImagesTab,
-  }),
-  tab({
-    id: "products",
-    label: "المنتجات المرتبطة",
-    savedMessage: "تم حفظ المنتجات المرتبطة بنجاح",
-    schema: productsSchema,
-    build: (v) => buildProductsFormData(v),
-    Component: ProductsTab,
+    id: "media",
+    label: "الصور والمنتجات",
+    savedMessage: "تم حفظ الصور والمنتجات بنجاح",
+    schema: mediaSchema,
+    build: (v) => buildMediaFormData(v),
+    Component: MediaTab,
   }),
 ];

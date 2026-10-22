@@ -10,8 +10,6 @@ export interface BlogApi {
   title: Localized;
   subtitle: Localized;
   content: Localized;
-  quote?: Localized | null;
-  quote_author?: Localized | null;
   cover?: string | null;
   hero_banner?: string | null;
   is_featured: boolean | number;
@@ -31,8 +29,6 @@ export interface BlogFormValues {
   is_featured: boolean;
   is_tips_secrets: boolean;
   content: Localized;
-  quote: Localized;
-  quote_author: Localized;
   cover: ImageValue;
   hero_banner: ImageValue;
   product_ids: number[];

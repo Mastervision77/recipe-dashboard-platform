@@ -1,0 +1,69 @@
+/* Tailwind preflight بيشيل ستايل العناوين والليستات، فبنرجّعه جوه الـ editor بس */
+.rich-editor .ProseMirror {
+  min-height: 380px;
+  padding: 0.75rem 1rem;
+  outline: none;
+  line-height: 1.8;
+}
+.rich-editor .ProseMirror h1 { font-size: 2rem; font-weight: 800; margin: 1.25rem 0 0.5rem; }
+.rich-editor .ProseMirror h2 { font-size: 1.5rem; font-weight: 700; margin: 1rem 0 0.5rem; }
+.rich-editor .ProseMirror h3 { font-size: 1.25rem; font-weight: 700; margin: 0.75rem 0 0.5rem; }
+.rich-editor .ProseMirror p { margin: 0.5rem 0; }
+.rich-editor .ProseMirror ul { list-style: disc; padding-inline-start: 1.5rem; margin: 0.5rem 0; }
+.rich-editor .ProseMirror ol { list-style: decimal; padding-inline-start: 1.5rem; margin: 0.5rem 0; }
+.rich-editor .ProseMirror blockquote {
+  border-inline-start: 4px solid #0d5c34;
+  background: #f3faf6;
+  padding: 0.5rem 1rem;
+  margin: 0.75rem 0;
+  color: #404040;
+  font-style: italic;
+}
+.rich-editor .ProseMirror a { color: #0d5c34; text-decoration: underline; }
+.rich-editor .ProseMirror hr { border: 0; border-top: 1px solid #d4d4d4; margin: 1rem 0; }
+.rich-editor .ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 0.75rem auto;
+  display: block;
+}
+.rich-editor .ProseMirror img.ProseMirror-selectednode { outline: 3px solid #0d5c34; }
+
+/* highlight */
+.rich-editor .ProseMirror mark { border-radius: 2px; padding: 0 2px; }
+
+/* الجداول */
+.rich-editor .ProseMirror table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0.75rem 0;
+  overflow: hidden;
+}
+.rich-editor .ProseMirror td,
+.rich-editor .ProseMirror th {
+  position: relative;
+  min-width: 3rem;
+  border: 1px solid #bdbdbd;
+  padding: 0.4rem 0.6rem;
+  vertical-align: top;
+}
+.rich-editor .ProseMirror th { background: #f3f4f6; font-weight: 700; }
+.rich-editor .ProseMirror .selectedCell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 92, 52, 0.15);
+  pointer-events: none;
+}
+.rich-editor .ProseMirror .column-resize-handle {
+  position: absolute;
+  top: 0;
+  bottom: -2px;
+  inset-inline-end: -2px;
+  width: 4px;
+  background: #0d5c34;
+  pointer-events: none;
+}
+.rich-editor .ProseMirror.resize-cursor { cursor: col-resize; }

@@ -11,7 +11,7 @@ export const ecommerceRoutes = (
     <>
 
     {/* about page */}
-    <Route path="admin/shop" element={<h1>da</h1>} />
+    <Route path="admin/shop/dashboard" element={<h1>da</h1>} />
     <Route path="admin/shop/about-page" element={<About />} />
     <Route path="admin/shop/blog-page" element={<Blog />} />
 

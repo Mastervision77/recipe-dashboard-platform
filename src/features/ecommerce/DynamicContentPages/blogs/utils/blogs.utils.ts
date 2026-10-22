@@ -18,8 +18,6 @@ export const blogInitialValues = (): BlogFormValues => ({
   is_featured: false,
   is_tips_secrets: false,
   content: emptyLoc(),
-  quote: emptyLoc(),
-  quote_author: emptyLoc(),
   cover: "",
   hero_banner: "",
   product_ids: [],
@@ -33,8 +31,6 @@ export const mapBlogToForm = (b: BlogApi): BlogFormValues => ({
   is_featured: Boolean(b.is_featured),
   is_tips_secrets: Boolean(b.is_tips_secrets),
   content: loc(b.content),
-  quote: loc(b.quote),
-  quote_author: loc(b.quote_author),
   cover: b.cover ?? "",
   hero_banner: b.hero_banner ?? "",
   product_ids: b.product_ids ?? b.products?.map((p) => p.id) ?? [],
@@ -75,12 +71,6 @@ export const buildContentFormData = (v: BlogFormValues, fd = new FormData()) => 
   return fd;
 };
 
-export const buildQuoteFormData = (v: BlogFormValues, fd = new FormData()) => {
-  appendLoc(fd, "quote", v.quote);
-  appendLoc(fd, "quote_author", v.quote_author);
-  return fd;
-};
-
 export const buildImagesFormData = (v: BlogFormValues, fd = new FormData()) => {
   appendImg(fd, "cover", v.cover);
   appendImg(fd, "hero_banner", v.hero_banner);
@@ -92,12 +82,18 @@ export const buildProductsFormData = (v: BlogFormValues, fd = new FormData()) =>
   return fd;
 };
 
-// الإضافة: كل الـ tabs في request واحد (الاقتباس اختياري)
+// تاب الصور + المنتجات: الاتنين بيتبعتوا في نفس الـ request
+export const buildMediaFormData = (v: BlogFormValues, fd = new FormData()) => {
+  buildImagesFormData(v, fd);
+  buildProductsFormData(v, fd);
+  return fd;
+};
+
+// الإضافة: كل الـ tabs في request واحد
 export const buildCreateFormData = (v: BlogFormValues) => {
   const fd = new FormData();
   buildBasicFormData(v, fd);
   buildContentFormData(v, fd);
-  if (v.quote.ar.trim() || v.quote.en.trim()) buildQuoteFormData(v, fd);
   buildImagesFormData(v, fd);
   buildProductsFormData(v, fd);
   fd.append("is_active", "1");

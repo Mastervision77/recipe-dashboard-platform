@@ -12,13 +12,6 @@ const bilingual = (label: string, max = 255) =>
     en: text(`${label} بالإنجليزي`, max),
   });
 
-// اختياري (الاقتباس)
-const optionalBilingual = (label: string, max: number) =>
-  Yup.object({
-    ar: Yup.string().trim().max(max, `${label} بالعربي طويل جدًا`),
-    en: Yup.string().trim().max(max, `${label} بالإنجليزي طويل جدًا`),
-  });
-
 const MAX_SIZE = 5 * 1024 * 1024; // 5MB
 const ALLOWED = ["image/jpeg", "image/png", "image/webp"];
 
@@ -46,13 +39,15 @@ export const basicSchema = Yup.object({
   is_tips_secrets: Yup.boolean(),
 });
 
-export const contentSchema = Yup.object({
-  content: bilingual("المحتوى", 100000),
-});
+// المحتوى HTML من الـ editor: مطلوب بس من غير حد أقصى للطول (ممكن يحتوي صور)
+const richText = (label: string) =>
+  Yup.string().trim().required(`${label} مطلوب`);
 
-export const quoteSchema = Yup.object({
-  quote: optionalBilingual("الاقتباس", 1000),
-  quote_author: optionalBilingual("اسم صاحب الاقتباس", 255),
+export const contentSchema = Yup.object({
+  content: Yup.object({
+    ar: richText("المحتوى بالعربي"),
+    en: richText("المحتوى بالإنجليزي"),
+  }),
 });
 
 export const imagesSchema = Yup.object({
@@ -64,9 +59,10 @@ export const productsSchema = Yup.object({
   product_ids: Yup.array().of(Yup.number().required()),
 });
 
+// تاب الصور + المنتجات (بيتحفظ مع بعض)
+export const mediaSchema = imagesSchema.concat(productsSchema);
+
 // الإضافة: كل الـ tabs في فورم واحد
 export const createBlogSchema = basicSchema
   .concat(contentSchema)
-  .concat(quoteSchema)
-  .concat(imagesSchema)
-  .concat(productsSchema);
+  .concat(mediaSchema);

@@ -15,7 +15,6 @@ import {
 import type { BlogApi } from "../../types/blogs.types";
 import { BLOGS_PATH } from "../../utils/blogs.utils";
 import { generateColumns } from "./blogs.columns";
-import { LuPlus } from "react-icons/lu";
 
 export default function BlogsTable() {
   const navigate = useNavigate();
@@ -80,28 +79,19 @@ export default function BlogsTable() {
         <Button
           type="button"
           onClick={() => navigate(`${BLOGS_PATH}/new`)}
-          className="flex cursor-pointer items-center gap-2 rounded-full bg-secondary-gradient px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+          className="cursor-pointer rounded-full bg-[#0d5c34] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#094a29]"
         >
-          <LuPlus size={16} />
+          + إضافة مقال
         </Button>
       </div>
 
       {isLoading ? (
-  <Loading />
-) : rows.length === 0 ? (
-  <div className="flex min-h-[300px] flex-col items-center justify-center px-4 text-center">
-    <h2 className="text-xl font-semibold text-gray-800">
-      لا توجد مدونات
-    </h2>
-    <p className="mt-2 text-sm text-gray-500">
-      لا يوجد محتوى متاح للعرض حاليًا.
-    </p>
-  </div>
-) : (
-  <div className={isFetching ? "opacity-60 transition-opacity" : ""}>
-    <Table data={rows} columns={columns} />
-  </div>
-)}
+        <Loading />
+      ) : (
+        <div className={isFetching ? "opacity-60 transition-opacity" : ""}>
+          <Table data={rows} columns={columns} />
+        </div>
+      )}
 
       <Paginate
         page={page}
