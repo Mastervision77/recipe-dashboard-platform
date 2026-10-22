@@ -5,8 +5,8 @@ export function ImagesTab() {
   return (
     <div className="space-y-6" dir="rtl">
       <div className="space-y-2">
-        <ImageUploadField name="cover" label="صورة الكارت (الخارجية)" />
-        <FieldError name="cover" />
+        <ImageUploadField name="cover_image" label="صورة الكارت (الخارجية)" />
+        <FieldError name="cover_image" />
       </div>
 
       <div className="space-y-2">

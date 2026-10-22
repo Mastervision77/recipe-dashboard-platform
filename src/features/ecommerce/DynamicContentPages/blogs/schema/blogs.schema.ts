@@ -51,7 +51,7 @@ export const contentSchema = Yup.object({
 });
 
 export const imagesSchema = Yup.object({
-  cover: image("صورة الكارت"),
+  cover_image: image("صورة الكارت"),
   hero_banner: image("صورة البانر"),
 });
 

@@ -10,7 +10,7 @@ export interface BlogApi {
   title: Localized;
   subtitle: Localized;
   content: Localized;
-  cover?: string | null;
+  cover_image?: string | null;
   hero_banner?: string | null;
   is_featured: boolean | number;
   is_tips_secrets: boolean | number;
@@ -29,7 +29,7 @@ export interface BlogFormValues {
   is_featured: boolean;
   is_tips_secrets: boolean;
   content: Localized;
-  cover: ImageValue;
+  cover_image: ImageValue;
   hero_banner: ImageValue;
   product_ids: number[];
 }
