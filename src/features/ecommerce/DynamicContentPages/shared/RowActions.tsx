@@ -1,36 +1,29 @@
-import { FiEdit2, FiTrash2 } from "react-icons/fi";
+
+import EditButton from "../../../../shared/components/edit/EditButton";
+import DeleteButton from "../../../../shared/components/delete/DeleteButton";
+import ViewButtons from "../../../../shared/components/view/ViewButtons";
 
 type Props = {
   onEdit?: () => void;
   onDelete?: () => void;
+  onView?: () => void;
   disabled?: boolean;
 };
 
-export default function RowActions({ onEdit, onDelete, disabled }: Props) {
+export default function RowActions({ onEdit, onDelete, onView, disabled }: Props) {
   return (
     <div className="flex items-center gap-2">
-      {onEdit && (
-        <button
-          type="button"
-          title="تعديل"
-          onClick={onEdit}
-          disabled={disabled}
-          className="cursor-pointer rounded-full border border-neutral-200 p-2 text-[#0d5c34] transition hover:bg-green-50 disabled:opacity-50"
-        >
-          <FiEdit2 size={16} />
-        </button>
+
+      {onView && (
+        <ViewButtons onClick={() => onView()} />
       )}
 
+      {onEdit && (
+        <EditButton onClick={() => onEdit()} />
+      )}
+      
       {onDelete && (
-        <button
-          type="button"
-          title="حذف"
-          onClick={onDelete}
-          disabled={disabled}
-          className="cursor-pointer rounded-full border border-red-200 p-2 text-red-600 transition hover:bg-red-50 disabled:opacity-50"
-        >
-          <FiTrash2 size={16} />
-        </button>
+        <DeleteButton onClick={() => onDelete()} />
       )}
     </div>
   );

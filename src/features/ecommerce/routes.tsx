@@ -15,7 +15,7 @@ export const ecommerceRoutes = (
     <Route path="admin/shop/about-page" element={<About />} />
     <Route path="admin/shop/blog-page" element={<Blog />} />
 
-     <Route path="admin/shop/blog-page/new" element={<BlogCreate />} />
+    <Route path="admin/shop/blog-page/new" element={<BlogCreate />} />
     <Route path="admin/shop/blog-page/:id" element={<BlogEdit />} />
 
     {/* blog categories */}

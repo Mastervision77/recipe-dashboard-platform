@@ -1,15 +1,16 @@
 
-import { FaRegEdit } from 'react-icons/fa'
+import { FiEdit2 } from 'react-icons/fi'
 import { Button } from '../Button/Button'
 
-export default function EditButton({ onClick }: { onClick: () => void }) {
+export default function EditButton({ onClick  }: { onClick: () => void }) {
     return (
         <Button
             type="button"
             onClick={onClick}
-            className="rounded-md px-3 py-1 text-sm cursor-pointer transition-colors duration-300 hover:bg-green-600 hover:text-white "
+            
+            className="cursor-pointer rounded-full border border-neutral-200 p-2 text-[#0d5c34] transition hover:bg-green-50 disabled:opacity-50"
         >
-            <FaRegEdit />
+            <FiEdit2 size={16} />
         </Button>
     )
 }

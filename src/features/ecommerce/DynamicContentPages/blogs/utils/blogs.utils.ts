@@ -100,5 +100,5 @@ export const buildCreateFormData = (v: BlogFormValues) => {
   return fd;
 };
 
-// مسارات صفحات المدونة (لازم تطابق routes.tsx)
+// مسارات صفحات المدونة 
 export const BLOGS_PATH = "/admin/shop/blog-page";

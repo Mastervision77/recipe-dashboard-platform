@@ -1,10 +1,8 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import ViewButtons from "../../../../shared/components/view/ViewButtons";
-import EditButton from "../../../../shared/components/edit/EditButton";
-import DeleteButton from "../../../../shared/components/delete/DeleteButton";
 import type { User } from "../../types/users.types";
 import StatusToggle from "../../../../shared/components/StatusToggle/StatusToggle";
 import type { AppTableFeatures } from "../../../../shared/components/Table/tableConfig";
+import RowActions from "../../../ecommerce/DynamicContentPages/shared/RowActions";
 
 const columnHelper = createColumnHelper<AppTableFeatures, User>();
 
@@ -49,16 +47,18 @@ export const generateUserColumns = ({ onView, onEdit, onDelete ,onStatusChange }
             id: "actions",
             header: "الاجراءات",
             cell: (info) => {
-                const User = info.row.original;
+                const User = info.row.original as User;
 
                 return (
-                    // <ActionDropdown>
-                    <div className="flex gap-1">
-                        <ViewButtons onClick={() => onView?.(User)} />
-                        <EditButton onClick={() => onEdit?.(User)} />
-                        <DeleteButton onClick={() => onDelete?.(User)} />
-                    </div>
-                    // </ActionDropdown>
+
+                    <RowActions onEdit={() => onEdit?.(User)} onDelete={() => onDelete?.(User)} onView={() => onView?.(User)} />
+                    // // <ActionDropdown>
+                    // <div className="flex gap-1">
+                    //     <ViewButtons onClick={() => onView?.(User)} />
+                    //     <EditButton onClick={() => onEdit?.(User)} />
+                    //     <DeleteButton onClick={() => onDelete?.(User)} />
+                    // </div>
+                    // // </ActionDropdown>
 
                 );
             },

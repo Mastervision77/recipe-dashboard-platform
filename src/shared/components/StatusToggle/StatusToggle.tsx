@@ -29,17 +29,14 @@ export default function StatusToggle({
     return (
         <Button
             type="button"
-            onClick={handleChange}
             disabled={disabled || isLoading}
-            className={`relative h-6 w-11 rounded-full transition-colors ${
-                value ? "bg-[#0d5c34]" : "bg-gray-300"
-            } ${disabled || isLoading ? "cursor-not-allowed opacity-60" : "cursor-pointer"}`}
+            onClick={handleChange}
+            className={`relative h-6 w-11 cursor-pointer rounded-full transition disabled:cursor-not-allowed disabled:opacity-50 ${value ? "bg-[#0d5c34]" : "bg-gray-300"
+                }`}
         >
             <span
-                className={`absolute top-1 h-4 w-4 rounded-full bg-white transition-transform ${
-                   value ? "translate-x-5"
-                        : "translate-x-0.5"
-                }`}
+                className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${value ? "right-0.5" : "right-[1.375rem]"
+                    }`}
             />
         </Button>
     );

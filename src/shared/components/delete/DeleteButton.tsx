@@ -7,7 +7,7 @@ export default function DeleteButton({ onClick }: { onClick: () => void }) {
         <Button
             type="button"
             onClick={onClick}
-            className="rounded-md px-3 py-1 text-sm cursor-pointer transition-colors duration-300 hover:bg-red-600 hover:text-white "
+            className="cursor-pointer rounded-full border border-red-200 p-2 text-red-600 transition hover:bg-red-50 disabled:opacity-50"
         >
             <GoTrash />
         </Button>

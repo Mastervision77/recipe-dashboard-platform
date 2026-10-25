@@ -1,12 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../../../shared/components/Button/Button";
-import { ModalTemplate } from "../../../../../../shared/components/modal/ModalTemplate";
 import { Table } from "../../../../../../shared/components/Table/Table";
 import Paginate from "../../../../../../shared/components/pagination/Paginate";
 import Loading from "../../../../../../shared/components/Loading/Loading";
 import { getPageView } from "../../../../../../lib/pagination";
-import DeleteConfirmDialog from "../../../shared/DeleteConfirmDialog";
 import {
   useBlogsQuery,
   useDeleteBlog,
@@ -15,15 +13,17 @@ import {
 import type { BlogApi } from "../../types/blogs.types";
 import { BLOGS_PATH } from "../../utils/blogs.utils";
 import { generateColumns } from "./blogs.columns";
+import { LuPlus } from "react-icons/lu";
+import { deleteAlert } from "../../../../../../shared/components/alert/deleteAlert";
 
 export default function BlogsTable() {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
-  const [deleting, setDeleting] = useState<BlogApi | null>(null);
+
 
   const { data, isLoading, isFetching } = useBlogsQuery(page);
-  const { mutateAsync: deleteBlog, isPending: isDeleting } = useDeleteBlog();
-  const { mutate: toggleStatus, isPending: isToggling, variables: togglingId } =
+  const { mutateAsync: deleteBlog} = useDeleteBlog();
+  const { mutate: toggleStatus} =
     useToggleBlogStatus();
 
   const { rows, pagesCount } = getPageView(data, page);
@@ -38,22 +38,19 @@ export default function BlogsTable() {
     [navigate],
   );
 
-  const handleDelete = useCallback((blog: BlogApi) => setDeleting(blog), []);
 
   const handleToggle = useCallback(
     (blog: BlogApi) => toggleStatus(blog.id),
     [toggleStatus],
   );
 
-  const confirmDelete = async () => {
-    if (!deleting) return;
-    try {
-      await deleteBlog(deleting.id);
-      setDeleting(null);
-    } catch {
-      // رسالة الخطأ بتظهر من onError في الـ hook
-    }
-  };
+      const handleDelete = useCallback((blog: BlogApi) => {
+          deleteAlert({
+              message: `هل أنت متأكد من حذف المقال "${blog?.title?.ar}"؟`,
+              onConfirm: () => deleteBlog(blog.id),
+          });
+      }, []);
+
 
   const columns = useMemo(
     () =>
@@ -61,9 +58,8 @@ export default function BlogsTable() {
         onEdit: handleEdit,
         onDelete: handleDelete,
         onToggle: handleToggle,
-        togglingId: isToggling ? togglingId : null,
       }),
-    [handleEdit, handleDelete, handleToggle, isToggling, togglingId],
+    [handleEdit, handleDelete, handleToggle],
   );
 
   const handlePageChange = (nextPage: number) => {
@@ -79,9 +75,9 @@ export default function BlogsTable() {
         <Button
           type="button"
           onClick={() => navigate(`${BLOGS_PATH}/new`)}
-          className="cursor-pointer rounded-full bg-[#0d5c34] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#094a29]"
+          className="flex cursor-pointer items-center gap-2 rounded-full bg-secondary-gradient px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
         >
-          + إضافة مقال
+            <LuPlus size={16} />
         </Button>
       </div>
 
@@ -99,18 +95,6 @@ export default function BlogsTable() {
         onPageChange={handlePageChange}
       />
 
-      <ModalTemplate
-        isOpen={!!deleting}
-        onClose={() => !isDeleting && setDeleting(null)}
-      >
-        <DeleteConfirmDialog
-          title="حذف المقال"
-          message={`هل أنتِ متأكدة من حذف المقال "${deleting?.title?.ar ?? ""}"؟`}
-          isPending={isDeleting}
-          onConfirm={confirmDelete}
-          onClose={() => setDeleting(null)}
-        />
-      </ModalTemplate>
     </div>
   );
 }
