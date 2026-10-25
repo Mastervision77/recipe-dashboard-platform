@@ -18,7 +18,7 @@ export const blogInitialValues = (): BlogFormValues => ({
   is_featured: false,
   is_tips_secrets: false,
   content: emptyLoc(),
-  cover_image: "",
+  cover: "",
   hero_banner: "",
   product_ids: [],
 });
@@ -31,7 +31,7 @@ export const mapBlogToForm = (b: BlogApi): BlogFormValues => ({
   is_featured: Boolean(b.is_featured),
   is_tips_secrets: Boolean(b.is_tips_secrets),
   content: loc(b.content),
-  cover_image: b.cover_image ?? "",
+  cover: b.cover_image ?? "",
   hero_banner: b.hero_banner ?? "",
   product_ids: b.product_ids ?? b.products?.map((p) => p.id) ?? [],
 });
@@ -72,7 +72,7 @@ export const buildContentFormData = (v: BlogFormValues, fd = new FormData()) => 
 };
 
 export const buildImagesFormData = (v: BlogFormValues, fd = new FormData()) => {
-  appendImg(fd, "cover_image", v.cover_image);
+  appendImg(fd, "cover", v.cover_image);
   appendImg(fd, "hero_banner", v.hero_banner);
   return fd;
 };
@@ -86,15 +86,6 @@ export const buildProductsFormData = (v: BlogFormValues, fd = new FormData()) =>
 export const buildMediaFormData = (v: BlogFormValues, fd = new FormData()) => {
   buildImagesFormData(v, fd);
   buildProductsFormData(v, fd);
-
-    console.log("Cover image:", fd.get("cover_image"));
-  console.log("Hero banner:", fd.get("hero_banner"));
-
-
-  console.log("All FormData entries:");
-  fd.forEach((value, key) => {
-    console.log(key, value);
-  });
   return fd;
 };
 

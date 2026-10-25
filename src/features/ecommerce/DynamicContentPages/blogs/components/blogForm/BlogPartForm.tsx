@@ -79,6 +79,8 @@ export default function BlogPartForm({ tab, record }: Props) {
       validationSchema={tab.schema}
       onSubmit={async (values) => {
         try {
+
+          console.log(values)
           await mutateAsync({
             formData: tab.build(values),
             message: tab.savedMessage,
