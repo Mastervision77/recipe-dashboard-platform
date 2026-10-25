@@ -86,6 +86,9 @@ export const buildProductsFormData = (v: BlogFormValues, fd = new FormData()) =>
 export const buildMediaFormData = (v: BlogFormValues, fd = new FormData()) => {
   buildImagesFormData(v, fd);
   buildProductsFormData(v, fd);
+
+    console.log("Cover image:", fd.get("cover_image"));
+  console.log("Hero banner:", fd.get("hero_banner"));
   return fd;
 };
 

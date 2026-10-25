@@ -26,6 +26,7 @@ export default function BlogPartForm({ tab, record }: Props) {
             formData: tab.build(values),
             message: tab.savedMessage,
           });
+          
         } catch {
           // رسالة الخطأ بتظهر من onError في الـ hook
         }
