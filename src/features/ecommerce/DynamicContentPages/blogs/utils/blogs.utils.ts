@@ -89,6 +89,12 @@ export const buildMediaFormData = (v: BlogFormValues, fd = new FormData()) => {
 
     console.log("Cover image:", fd.get("cover_image"));
   console.log("Hero banner:", fd.get("hero_banner"));
+
+
+  console.log("All FormData entries:");
+  fd.forEach((value, key) => {
+    console.log(key, value);
+  });
   return fd;
 };
 
