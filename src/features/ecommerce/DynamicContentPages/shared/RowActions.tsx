@@ -7,10 +7,9 @@ type Props = {
   onEdit?: () => void;
   onDelete?: () => void;
   onView?: () => void;
-  disabled?: boolean;
 };
 
-export default function RowActions({ onEdit, onDelete, onView, disabled }: Props) {
+export default function RowActions({ onEdit, onDelete, onView }: Props) {
   return (
     <div className="flex items-center gap-2">
 
