@@ -1,3 +1,5 @@
+import type { ListResponse } from "../../../../../lib/pagination";
+
 export type Localized = { ar: string; en: string };
 
 export interface CategoryApi {
@@ -14,8 +16,11 @@ export interface CategoryFormValues {
   is_active: boolean;
 }
 
-export interface CategoriesResponse {
-  data: CategoryApi[];
-  meta?: unknown;
-  links?: unknown;
-}
+// export interface CategoriesResponse {
+//   data: CategoryApi[];
+//   meta?: unknown;
+//   links?: unknown;
+// }
+
+
+export type CategoriesResponse = ListResponse<CategoryApi>;

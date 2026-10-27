@@ -1,3 +1,4 @@
+import type { ListResponse } from "../../../../../lib/pagination";
 
 
 export type Localized = { ar: string; en: string };
@@ -36,11 +37,14 @@ export interface BlogFormValues {
   product_ids: number[];
 }
 
-export interface BlogsResponse {
-  data: BlogApi[];
-  meta?: unknown;
-  links?: unknown;
-}
+// export interface BlogsResponse {
+//   data: BlogApi[];
+//   meta?: unknown;
+//   links?: unknown;
+// }
+
+
+export type BlogsResponse = ListResponse<BlogApi>;
 
 
 
