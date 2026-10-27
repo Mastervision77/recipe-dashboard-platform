@@ -6,6 +6,8 @@ export type Localized = { ar: string; en: string };
 // File = رفع جديد | string = URL جاي من الـ API (أو "" لو فاضي)
 export type ImageValue = File | string;
 
+
+
 export interface BlogApi {
   id: number;
   category_id?: number | null;
@@ -32,16 +34,11 @@ export interface BlogFormValues {
   is_featured: boolean;
   is_tips_secrets: boolean;
   content: Localized;
-  cover: ImageValue;
+  cover_image: ImageValue;
   hero_banner: ImageValue;
   product_ids: number[];
 }
 
-// export interface BlogsResponse {
-//   data: BlogApi[];
-//   meta?: unknown;
-//   links?: unknown;
-// }
 
 
 export type BlogsResponse = ListResponse<BlogApi>;
