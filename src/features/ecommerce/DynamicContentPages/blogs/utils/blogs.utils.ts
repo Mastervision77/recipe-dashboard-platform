@@ -72,7 +72,7 @@ export const buildContentFormData = (v: BlogFormValues, fd = new FormData()) => 
 };
 
 export const buildImagesFormData = (v: BlogFormValues, fd = new FormData()) => {
-  appendImg(fd, "cover", v.cover_image);
+  appendImg(fd, "cover", v.cover);
   appendImg(fd, "hero_banner", v.hero_banner);
   return fd;
 };

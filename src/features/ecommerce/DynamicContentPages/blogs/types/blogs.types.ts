@@ -1,3 +1,5 @@
+
+
 export type Localized = { ar: string; en: string };
 
 // File = رفع جديد | string = URL جاي من الـ API (أو "" لو فاضي)
@@ -29,7 +31,7 @@ export interface BlogFormValues {
   is_featured: boolean;
   is_tips_secrets: boolean;
   content: Localized;
-  cover_image: ImageValue;
+  cover: ImageValue;
   hero_banner: ImageValue;
   product_ids: number[];
 }
@@ -39,6 +41,8 @@ export interface BlogsResponse {
   meta?: unknown;
   links?: unknown;
 }
+
+
 
 export interface BlogShowResponse {
   data: BlogApi;
